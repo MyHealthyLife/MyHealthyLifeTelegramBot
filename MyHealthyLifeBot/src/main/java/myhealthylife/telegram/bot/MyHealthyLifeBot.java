@@ -10,8 +10,59 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 	public void onUpdateReceived(Update update) {
 		 if (update.hasMessage() && update.getMessage().hasText()) {
 		        SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
-		                .setChatId(update.getMessage().getChatId())
-		                .setText(update.getMessage().getText());
+		                .setChatId(update.getMessage().getChatId());
+		        
+		        String tockens[]=update.getMessage().getText().split(" ");
+		        
+		        switch(tockens[0]){
+		        	case"/start": //Stefano
+		        	case "/help": //Stefano
+		        		break;
+		        	case "/register": //tocken[1] Name Surname Sex BirthDate;
+		        		
+		        		break;
+		        	case "/name"://change name
+		        		break;
+		        	case "/surname": //change surname
+		        		break;
+		        	case "/birthdate":
+		        		break;
+		        	case "/unregister":
+		        		break;
+		        	case "/healthstate": //Stefano
+		        		break;
+		        	case "/measureHistory": //Stefano
+		        		break;
+		        	case "/addmeasure": //addmeasure weight 80 //Stefano
+		        		break;
+		        	case "/measuretypes"://Stefano
+		        		break;
+		        	case "/randomSentece":
+		        		break;
+		        	case "/sentenceForMe":
+		        		break;
+		        	case "/foodsForMe": // <max-cal>  extra maxCal service
+		        		break;
+		        	//service 02
+		        	case "/goal": //my goals
+		        		break;
+		        	case "/ranking":
+		        		break;
+		        	case "/send": //<user> <sentence>
+		        		break;
+		        	case "/receive": //Stefano
+		        		break;
+		        	case "/newRecipe": //<max_cal> //Stefano
+		        		break;
+		        	case "/updateRecipe": //Stefano
+		        		break;
+		        	case "/newFood"://Stefano
+		        		break;
+		        	case "/newGoal":
+		        		break;
+		        		
+		        }
+		        
 		        try {
 		        	System.out.println(message);
 		            sendMessage(message); // Call method to send the message
