@@ -9,7 +9,7 @@ public class HelpHaldler {
 		return message;
 	}
 	
-	public static String getCommandNotFaud(){
+	public static String getCommandNotFound(){
 		return "type /help for the list of available commands";
 	}
 }
