@@ -33,6 +33,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        	case "/unregister":
 		        		break;
 		        	case "/healthstate": //Stefano
+		        		update.getMessage().getChat().getUserName();
 		        		break;
 		        	case "/measureHistory": //Stefano
 		        		break;
