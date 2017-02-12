@@ -42,7 +42,11 @@ public class HealthProfileHandler {
 			
 			while(it.hasNext()){
 				Measure m=it.next();
-				result+=m.getMeasureType()+" "+m.getMeasureValue()+( m.getDateRegistered()!=null?" ["+m.getDateRegistered()+"]\n":"\n");
+				result+=m.getMeasureType()+" "+m.getMeasureValue();
+				if( m.getDateRegistered()!=null)
+					result+=" ["+m.getDateRegistered()+"]\n";
+				else
+					result+="\n";
 			}
 			
 			return result;
@@ -69,7 +73,11 @@ public class HealthProfileHandler {
 		
 		while(iterator.hasNext()){
 			Measure m=iterator.next();
-			result+=m.getMeasureType()+" "+m.getMeasureValue()+( m.getDateRegistered()!=null?" ["+m.getDateRegistered()+"]\n":"\n");
+			result+=m.getMeasureType()+" "+m.getMeasureValue();
+			if( m.getDateRegistered()!=null)
+				result+=" ["+m.getDateRegistered()+"]\n";
+			else
+				result+="\n";
 		}
 		
 		return result;
