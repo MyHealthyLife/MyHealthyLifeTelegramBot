@@ -1,6 +1,8 @@
 package myhealthylife.telegram.bot.handlers;
 
+import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import myhealthylife.dataservice.model.entities.Person;

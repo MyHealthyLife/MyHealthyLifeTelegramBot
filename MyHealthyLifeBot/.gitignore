@@ -1,5 +1,6 @@
 /target/
 src/main/java/myhealthylife/telegram/bot/TockenHandler.java
+src/main/java/myhealthylife/telegram/bot/TokenHandler.java
 /.classpath
 /.project
 /.settings/
