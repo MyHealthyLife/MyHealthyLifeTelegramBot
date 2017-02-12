@@ -83,12 +83,12 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 	}
 
 	public String getBotUsername() {
-		return TockenHandler.username;
+		return TokenHandler.username;
 	}
 
 	@Override
 	public String getBotToken() {
-		return TockenHandler.tocken;
+		return TokenHandler.tocken;
 	}
 
 }
