@@ -10,6 +10,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import myhealthylife.dataservice.model.MeasureHistory;
+import myhealthylife.dataservice.model.MeasureTypeList;
 import myhealthylife.dataservice.model.entities.Measure;
 import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.telegram.bot.utils.ServicesLocator;
@@ -95,5 +96,23 @@ public class HealthProfileHandler {
 		}
 		
 		return "Measure NOT saved";
+	}
+	
+	public static String getMeasureTypes(){
+		Response res=ServicesLocator.getCentric1Connection().path("measuretypes").request().accept(MediaType.APPLICATION_JSON).get();
+		if(res.getStatus()!=Response.Status.OK.getStatusCode())
+			return "Error";
+		
+		MeasureTypeList list=res.readEntity(MeasureTypeList.class);
+		
+		Iterator<String> it=list.getMeasureType().iterator();
+		
+		String result="type of measure available:\n\n";
+		
+		while(it.hasNext()){
+			result+=it.next()+"\n";
+		}
+		
+		return result;
 	}
 }

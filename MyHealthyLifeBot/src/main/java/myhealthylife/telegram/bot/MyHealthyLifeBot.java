@@ -49,6 +49,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        			message.setText("use /addmeasure <type> <value>");
 		        		break;
 		        	case "/measuretypes"://Stefano
+		        		message.setText(HealthProfileHandler.getMeasureTypes());
 		        		break;
 		        	case "/randomsentence": // Simone (done)
 		        		
