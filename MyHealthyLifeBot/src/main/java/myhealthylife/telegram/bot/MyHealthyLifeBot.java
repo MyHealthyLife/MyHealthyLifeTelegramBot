@@ -35,7 +35,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		break;
 		        	case "/surname": //change surname Simone (done)
 		        		
-		        		message.setText(UserDataHandler.updateName(update.getMessage().getChat().getUserName(), tokens[1]));
+		        		message.setText(UserDataHandler.updateSurnameName(update.getMessage().getChat().getUserName(), tokens[1]));
 		        		break;
 		        	case "/birthdate":
 		        		break;
