@@ -23,5 +23,22 @@ public class SentenceHandler {
 			return "An unexpected error occured";
 		}
 	}
+	
+	
+	
+	public static String getSentenceForMe(String username) {
+		
+		Sentence s = null;
+		
+		Response res= ServicesLocator.getCentric1Connection().path("sentence/" + username).request().accept(MediaType.APPLICATION_JSON).get();
+		
+		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
+			s=res.readEntity(Sentence.class);
+			return s.getText();
+		}
+		else{
+			return "An unexpected error occured";
+		}
+	}
 
 }

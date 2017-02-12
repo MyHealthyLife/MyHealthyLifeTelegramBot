@@ -44,11 +44,13 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		break;
 		        	case "/measuretypes"://Stefano
 		        		break;
-		        	case "/randomsentence":
+		        	case "/randomsentence": // Simone
 		        		
 		        		message.setText(SentenceHandler.getRandomSentence());
 		        		break;
-		        	case "/sentenceForMe":
+		        	case "/sentenceforme":
+
+		        		message.setText(SentenceHandler.getSentenceForMe(update.getMessage().getChat().getUserName()));
 		        		break;
 		        	case "/foodsForMe": // <max-cal>  extra maxCal service
 		        		break;
