@@ -17,9 +17,9 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        SendMessage message = new SendMessage() // Create a SendMessage object with mandatory fields
 		                .setChatId(update.getMessage().getChatId());
 		        
-		        String tockens[]=update.getMessage().getText().split(" ");
+		        String tokens[]=update.getMessage().getText().split(" ");
 		        
-		        switch(tockens[0]){
+		        switch(tokens[0]){
 		        	case"/start": //Stefano
 		        	case "/help": //Stefano
 		        		message.setText(HelpHaldler.getHelpMessage());
@@ -45,11 +45,11 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		break;
 		        	case "/measuretypes"://Stefano
 		        		break;
-		        	case "/randomsentence": // Simone
+		        	case "/randomsentence": // Simone (done)
 		        		
 		        		message.setText(SentenceHandler.getRandomSentence());
 		        		break;
-		        	case "/sentenceforme": // Simone
+		        	case "/sentenceforme": // Simone (done)
 
 		        		message.setText(SentenceHandler.getSentenceForMe(update.getMessage().getChat().getUserName()));
 		        		break;
@@ -58,13 +58,21 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        	//service 02
 		        	case "/goal": //my goals
 		        		break;
-		        	case "/ranking": // Simone
+		        	case "/ranking": // Simone (done but add support for map obj)
 		        		
 		        		message.setText(RankingHandler.getUserRank(update.getMessage().getChat().getUserName()));
 		        		break;
-		        	case "/send": //<user> <sentence>
+		        	case "/send": //<user> <sentence> Simone (done)
+		        		
+		        		if(tokens.length==3) {
+		        			message.setText(SentenceHandler.sendSentence((update.getMessage().getChat().getUserName()), tokens[1], tokens[2]));
+		        		}
 		        		break;
-		        	case "/receive": //Stefano
+		        	case "/receive": // Simone
+		        		
+		        		if(tokens.length==1) {
+		        			message.setText(SentenceHandler.receiveSentences(update.getMessage().getChat().getUserName()));
+		        		}
 		        		break;
 		        	case "/newRecipe": //<max_cal> //Stefano
 		        		break;
