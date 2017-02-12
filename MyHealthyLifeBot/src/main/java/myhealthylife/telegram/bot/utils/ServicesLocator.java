@@ -11,12 +11,12 @@ public class ServicesLocator {
 	public static WebTarget getCentric1Connection(){
 		ClientConfig clientConfig=new ClientConfig();
 		Client client=ClientBuilder.newClient(clientConfig);
-		return client.target(" https://centric01-main.herokuapp.com");
+		return client.target("https://centric01-main.herokuapp.com");
 	}
 	
 	public static WebTarget getCentric2Connection(){
 		ClientConfig clientConfig=new ClientConfig();
 		Client client=ClientBuilder.newClient(clientConfig);
-		return client.target(" https://centric02-social.herokuapp.com");
+		return client.target("https://centric02-social.herokuapp.com");
 	}
 }
