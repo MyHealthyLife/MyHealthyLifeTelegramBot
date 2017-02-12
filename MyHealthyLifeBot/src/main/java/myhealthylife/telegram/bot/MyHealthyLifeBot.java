@@ -43,6 +43,10 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		message.setText(HealthProfileHandler.getHealthHistory(update.getMessage().getChat().getUserName()));
 		        		break;
 		        	case "/addmeasure": //addmeasure weight 80 //Stefano
+		        		if(tockens.length==3)
+		        			message.setText(HealthProfileHandler.addMeasure(update.getMessage().getChat().getUserName(), tockens[1], tockens[2]));
+		        		else
+		        			message.setText("use /addmeasure <type> <value>");
 		        		break;
 		        	case "/measuretypes"://Stefano
 		        		break;

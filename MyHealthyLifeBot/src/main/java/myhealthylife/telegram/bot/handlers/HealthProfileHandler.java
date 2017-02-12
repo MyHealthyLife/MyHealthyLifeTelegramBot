@@ -1,7 +1,9 @@
 package myhealthylife.telegram.bot.handlers;
 
+import java.util.Date;
 import java.util.Iterator;
 
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
@@ -70,5 +72,28 @@ public class HealthProfileHandler {
 		}
 		
 		return result;
+	}
+	
+	public static String addMeasure(String username,String type,String value){
+		Measure m=new Measure();
+		m.setDateRegistered(new Date(System.currentTimeMillis()));
+		m.setMeasureType(type);
+		
+		try{
+			m.setMeasureValue(Double.parseDouble(value));
+			
+		}
+		catch (Exception e) {
+			return "use /addmeasure <type> <value>";
+		}
+		
+		Response res=ServicesLocator.getCentric1Connection().path("measure/"+username).request().accept(MediaType.APPLICATION_JSON).post(Entity.entity(m, MediaType.APPLICATION_JSON));
+		
+		if(res.getStatus()==Response.Status.OK.getStatusCode())
+		{
+			return "Measure saved";
+		}
+		
+		return "Measure NOT saved";
 	}
 }
