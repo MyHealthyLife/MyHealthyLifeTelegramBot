@@ -111,4 +111,33 @@ public class UserDataHandler {
 	
 	
 	
+	public static String updateBirthdate(String username, String birthdate) {
+		
+		Person p = UserDataHandler.getPerson(username);
+		
+		if(p!=null) {
+
+			try {
+				p.setBirthdate(format.parse(birthdate));
+			} catch (ParseException e) {
+				// do nothing
+			}
+			Response res= ServicesLocator.getCentric1Connection().path("user/data/" + username).request().accept(MediaType.APPLICATION_JSON).put(Entity.entity(p, MediaType.APPLICATION_JSON));
+			
+			if(res.getStatus()==Response.Status.OK.getStatusCode()) {
+				p=res.readEntity(Person.class);
+				return p.getUsername() + " user updated: \nFirstname: " + p.getFirstname() + "\nLastname: " + p.getLastname() + "\nSex: " + p.getSex() + "\nBirthdate: " + p.getBirthdate();
+			}
+			else{
+				return "An unexpected error occured";
+			}	
+		}
+		
+		else{
+			return "Cannot get the person";
+		}
+	}
+	
+	
+	
 }

@@ -38,6 +38,8 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		message.setText(UserDataHandler.updateSurnameName(update.getMessage().getChat().getUserName(), tokens[1]));
 		        		break;
 		        	case "/birthdate":
+		        		
+		        		message.setText(UserDataHandler.updateBirthdate(update.getMessage().getChat().getUserName(), tokens[1]));
 		        		break;
 		        	case "/unregister":
 		        		break;
