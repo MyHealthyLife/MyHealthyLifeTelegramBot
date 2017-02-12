@@ -5,6 +5,8 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import myhealthylife.telegram.bot.handlers.HelpHaldler;
+
 public class MyHealthyLifeBot extends TelegramLongPollingBot{
 
 	public void onUpdateReceived(Update update) {
@@ -17,6 +19,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        switch(tockens[0]){
 		        	case"/start": //Stefano
 		        	case "/help": //Stefano
+		        		message.setText(HelpHaldler.getHelpMessage());
 		        		break;
 		        	case "/register": //tocken[1] Name Surname Sex BirthDate;
 		        		
@@ -59,6 +62,9 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        	case "/newFood"://Stefano
 		        		break;
 		        	case "/newGoal":
+		        		break;
+		        	default:
+		        		message.setText(HelpHaldler.getCommandNotFaud());
 		        		break;
 		        		
 		        }
