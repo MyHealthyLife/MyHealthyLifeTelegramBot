@@ -7,6 +7,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 import myhealthylife.telegram.bot.handlers.HealthProfileHandler;
 import myhealthylife.telegram.bot.handlers.HelpHaldler;
+import myhealthylife.telegram.bot.handlers.RankingHandler;
 import myhealthylife.telegram.bot.handlers.SentenceHandler;
 
 public class MyHealthyLifeBot extends TelegramLongPollingBot{
@@ -48,7 +49,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		
 		        		message.setText(SentenceHandler.getRandomSentence());
 		        		break;
-		        	case "/sentenceforme":
+		        	case "/sentenceforme": // Simone
 
 		        		message.setText(SentenceHandler.getSentenceForMe(update.getMessage().getChat().getUserName()));
 		        		break;
@@ -57,7 +58,9 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        	//service 02
 		        	case "/goal": //my goals
 		        		break;
-		        	case "/ranking":
+		        	case "/ranking": // Simone
+		        		
+		        		message.setText(RankingHandler.getUserRank(update.getMessage().getChat().getUserName()));
 		        		break;
 		        	case "/send": //<user> <sentence>
 		        		break;
