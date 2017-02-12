@@ -9,6 +9,7 @@ import myhealthylife.telegram.bot.handlers.HealthProfileHandler;
 import myhealthylife.telegram.bot.handlers.HelpHaldler;
 import myhealthylife.telegram.bot.handlers.RankingHandler;
 import myhealthylife.telegram.bot.handlers.SentenceHandler;
+import myhealthylife.telegram.bot.handlers.UserDataHandler;
 
 public class MyHealthyLifeBot extends TelegramLongPollingBot{
 
@@ -26,6 +27,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		break;
 		        	case "/register": //tocken[1] Name Surname Sex BirthDate;
 		        		
+		        		message.setText(UserDataHandler.registerNewUser(update.getMessage().getChat().getUserName(), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5]));
 		        		break;
 		        	case "/name"://change name
 		        		break;
