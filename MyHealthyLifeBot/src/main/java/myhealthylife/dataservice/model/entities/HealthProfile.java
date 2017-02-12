@@ -83,16 +83,6 @@ public class HealthProfile implements Serializable {
 	 */
 	public CurrentHealth getCurrentHealth() {
 		
-		List<Measure> measures=new ArrayList<>();
-		
-		for (MeasureTypes t : MeasureTypes.values()){
-			Measure m=findMeasureByType(t);
-			if(m!=null){
-				measures.add(m);
-			}
-		}
-		currentHealth=new CurrentHealth();
-		currentHealth.setMeasure(measures);
 		return currentHealth;
 	}
 
