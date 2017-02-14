@@ -20,6 +20,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        
 		        String tokens[]=update.getMessage().getText().split(" ");
 		        System.out.println(update.getMessage().getFrom().getUserName());
+		        System.out.println(update.getMessage().getFrom().getId());
 		        switch(tokens[0]){
 		        	case"/start": //Stefano
 		        	case "/help": //Stefano
