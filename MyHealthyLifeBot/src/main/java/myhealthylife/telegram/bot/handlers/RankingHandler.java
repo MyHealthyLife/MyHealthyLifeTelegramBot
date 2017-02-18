@@ -13,7 +13,7 @@ public class RankingHandler {
 	
 public static String getUserRank(String username) {
 		
-		Response res= ServicesLocator.getCentric2Connection().path("ranking/pbitta1").request().accept(MediaType.APPLICATION_JSON).get();
+		Response res= ServicesLocator.getCentric2Connection().path("ranking/" + username).request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 			
