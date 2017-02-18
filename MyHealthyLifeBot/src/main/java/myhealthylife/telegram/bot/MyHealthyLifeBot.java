@@ -84,7 +84,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        	//service 02
 		        	case "/goal": //my goals
 		        		break;
-		        	case "/ranking": // Simone (done but add support for map obj)
+		        	case "/ranking": // Simone (done)
 		        		
 		        		message.setText(RankingHandler.getUserRank(update.getMessage().getFrom().getUserName()));
 		        		break;

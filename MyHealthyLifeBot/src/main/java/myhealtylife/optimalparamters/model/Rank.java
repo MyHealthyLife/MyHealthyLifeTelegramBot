@@ -2,9 +2,6 @@ package myhealtylife.optimalparamters.model;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="rank")
