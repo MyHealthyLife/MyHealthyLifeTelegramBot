@@ -29,6 +29,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        	if(!commandSplits[1].equals(TokenHandler.username))
 		        		return;
 		        }
+		        
 		        switch(commandSplits[0]){
 		        	case"/start": //Stefano
 		        	case "/help": //Stefano
