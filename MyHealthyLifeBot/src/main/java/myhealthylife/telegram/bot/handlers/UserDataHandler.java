@@ -140,4 +140,35 @@ public class UserDataHandler {
 	
 	
 	
+	
+	public static String deleteUserInformation(String username, String confirmation) {
+		
+	
+		Person p = UserDataHandler.getPerson(username);
+		
+		if(p!=null) {
+	
+			Response res= ServicesLocator.getCentric1Connection().path("user/data/" + username).request().accept(MediaType.APPLICATION_JSON).delete();
+			
+			if(res.getStatus()==Response.Status.OK.getStatusCode()) {
+				Long personId=res.readEntity(Long.class);
+				
+				if(personId==p.getIdPerson()) {
+					return p.getUsername() + " user has been deleted";
+				}
+				else{
+					return "An unexpected error occured";
+				}
+			}
+			else{
+				return "An unexpected error occured";
+			}	
+		}
+		
+		else{
+			return "This user does not exist";
+		}
+	}
+	
+	
 }

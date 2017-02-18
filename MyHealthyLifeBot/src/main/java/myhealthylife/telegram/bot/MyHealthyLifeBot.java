@@ -37,11 +37,22 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		
 		        		message.setText(UserDataHandler.updateSurnameName(update.getMessage().getChat().getUserName(), tokens[1]));
 		        		break;
-		        	case "/birthdate":
+		        	case "/birthdate": //change birthdate Simone (done)
 		        		
 		        		message.setText(UserDataHandler.updateBirthdate(update.getMessage().getChat().getUserName(), tokens[1]));
 		        		break;
-		        	case "/unregister":
+		        	case "/unregister": // Simone (done)
+		        		
+		        		try{
+			        		if(tokens[1].equals("confirm")) {
+			        			message.setText(UserDataHandler.deleteUserInformation(update.getMessage().getChat().getUserName(), tokens[1]));
+			        		}
+			        		else {
+			        			message.setText("If you really want to unregister please write /unregister confirm");
+			        		}
+		        		} catch(ArrayIndexOutOfBoundsException ex) {
+		        			message.setText("If you really want to unregister please write /unregister confirm");
+		        		}
 		        		break;
 		        	case "/healthstate": //Stefano (done)
 		        		
