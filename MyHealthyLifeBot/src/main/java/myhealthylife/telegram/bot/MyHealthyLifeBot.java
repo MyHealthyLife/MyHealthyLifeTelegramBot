@@ -94,7 +94,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        			message.setText(SentenceHandler.sendSentence((update.getMessage().getFrom().getUserName()), tokens[1], tokens[2]));
 		        		}
 		        		break;
-		        	case "/receive": // Simone
+		        	case "/receive": // Simone (done)
 		        		
 		        		if(tokens.length==1) {
 		        			message.setText(SentenceHandler.receiveSentences(update.getMessage().getFrom().getUserName()));

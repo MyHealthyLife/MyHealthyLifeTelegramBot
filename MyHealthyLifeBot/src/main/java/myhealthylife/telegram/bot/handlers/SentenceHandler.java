@@ -2,6 +2,7 @@ package myhealthylife.telegram.bot.handlers;
 
 import java.util.List;
 
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -54,7 +55,7 @@ public class SentenceHandler {
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 			s=res.readEntity(DedicatedSentence.class);
-			return "You dedicated '" + s.getSentenceText() + "' to" + s.getIdUserTwo();
+			return "You dedicated '" + s.getSentenceText() + "' to " + toUser;
 		}
 		else{
 			return "An unexpected error occured";
@@ -67,13 +68,13 @@ public class SentenceHandler {
 		
 		List<DedicatedSentence> dedicatedSListForUser = null;
 		
-		Response res= ServicesLocator.getCentric2Connection().path("sentence/" + username).request().accept(MediaType.APPLICATION_JSON).get();
+		Response res= ServicesLocator.getCentric2Connection().path("sentence/" + username).request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
-			dedicatedSListForUser=res.readEntity(List.class);
+			
+			dedicatedSListForUser=res.readEntity(new GenericType<List<DedicatedSentence>>(){});
 			
 			String messageToReturn = "";
-			
 			for(int i=0;i<dedicatedSListForUser.size();i++) {
 				
 				DedicatedSentence singleSentence = dedicatedSListForUser.get(i);
