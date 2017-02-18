@@ -79,7 +79,7 @@ public class SentenceHandler {
 				
 				DedicatedSentence singleSentence = dedicatedSListForUser.get(i);
 				
-				messageToReturn += "From " + singleSentence.getIdUserOne() + ": " + singleSentence.getSentenceText() + "\n";
+				messageToReturn += "From " + singleSentence.getUsernameOne() + ": " + singleSentence.getSentenceText() + "\n";
 				
 			}
 			
