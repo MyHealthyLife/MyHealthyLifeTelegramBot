@@ -84,6 +84,9 @@ public class SentenceHandler {
 			
 			return messageToReturn;
 		}
+		else if(res.getStatus()==Response.Status.NO_CONTENT.getStatusCode()) {
+			return "No sentences found for you";
+		}
 		else{
 			return "An unexpected error occured";
 		}
