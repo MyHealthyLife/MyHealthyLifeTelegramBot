@@ -20,6 +20,10 @@ public class DedicatedSentence implements Serializable {
 	
 	private Long idUserTwo;
 
+	private String usernameOne;
+
+	private String usernameTwo;
+
 	private Long idSentence;
 	
 	private String sentenceText;
@@ -55,6 +59,26 @@ public class DedicatedSentence implements Serializable {
 
 	public void setIdUserTwo(Long idUserTwo) {
 		this.idUserTwo = idUserTwo;
+	}
+
+
+	public String getUsernameOne() {
+		return usernameOne;
+	}
+
+
+	public void setUsernameOne(String usernameOne) {
+		this.usernameOne = usernameOne;
+	}
+
+
+	public String getUsernameTwo() {
+		return usernameTwo;
+	}
+
+
+	public void setUsernameTwo(String usernameTwo) {
+		this.usernameTwo = usernameTwo;
 	}
 
 
