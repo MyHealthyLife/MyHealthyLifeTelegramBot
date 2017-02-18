@@ -21,7 +21,15 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        String tokens[]=update.getMessage().getText().split(" ");
 		        System.out.println(update.getMessage().getFrom().getUserName());
 		        System.out.println(update.getMessage().getFrom().getId());
-		        switch(tokens[0]){
+		        
+		        String commandSplits[]=tokens[0].split("@");
+		        if(commandSplits.length>1){
+		        	/*if the command is sent in a group may be like "/addmeasure@myhealthylife_bot" if the username is not the username of the bot
+		        	 * the message is not for the bot*/
+		        	if(!commandSplits[1].equals(TokenHandler.username))
+		        		return;
+		        }
+		        switch(commandSplits[0]){
 		        	case"/start": //Stefano
 		        	case "/help": //Stefano
 		        		message.setText(HelpHaldler.getHelpMessage());
