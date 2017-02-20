@@ -64,11 +64,11 @@ public class SentenceHandler {
 	
 	
 	
-	public static String sendSentence(String fromUser, String toUser, String sentenceId) {
+	public static String sendSentence(String fromUser, String toUser, String sentenceType, String sentenceMotive) {
 		
 		DedicatedSentence s = null;
 		
-		Response res= ServicesLocator.getCentric2Connection().path("sentence/" + fromUser + "/" + toUser + "/" + sentenceId).request().accept(MediaType.APPLICATION_JSON).post(null);
+		Response res= ServicesLocator.getCentric2Connection().path("sentence/" + fromUser + "/" + toUser + "/" + sentenceType + "/" + sentenceMotive).request().accept(MediaType.APPLICATION_JSON).post(null);
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 			s=res.readEntity(DedicatedSentence.class);
