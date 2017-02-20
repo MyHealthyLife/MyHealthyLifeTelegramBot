@@ -13,6 +13,23 @@ import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class SentenceHandler {
 	
+	
+	
+	public static String getAllSentences(String username) {
+		
+		Sentence s = null;
+		
+		Response res= ServicesLocator.getCentric1Connection().path("sentence").request().accept(MediaType.APPLICATION_JSON).get();
+		
+		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
+			s=res.readEntity(Sentence.class);
+			return s.getText();
+		}
+		else{
+			return "An unexpected error occured";
+		}
+	}
+	
 	public static String getRandomSentence() {
 		
 		Sentence s = null;
