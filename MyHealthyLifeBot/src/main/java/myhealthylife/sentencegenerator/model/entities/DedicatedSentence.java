@@ -1,10 +1,13 @@
 package myhealthylife.sentencegenerator.model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 
@@ -27,6 +30,8 @@ public class DedicatedSentence implements Serializable {
 	private Long idSentence;
 	
 	private String sentenceText;
+	
+	private String insertionTime;
 	
 	public DedicatedSentence() {
 	}
@@ -99,6 +104,16 @@ public class DedicatedSentence implements Serializable {
 
 	public void setSentenceText(String sentenceText) {
 		this.sentenceText = sentenceText;
+	}
+
+
+	public String getInsertionTime() {
+		return insertionTime;
+	}
+
+
+	public void setInsertionTime(String insertionTime) {
+		this.insertionTime = insertionTime;
 	}
 	
 }

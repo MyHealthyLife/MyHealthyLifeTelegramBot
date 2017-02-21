@@ -96,7 +96,7 @@ public class SentenceHandler {
 				
 				DedicatedSentence singleSentence = dedicatedSListForUser.get(i);
 				
-				messageToReturn += "From " + singleSentence.getUsernameOne() + ": " + singleSentence.getSentenceText() + "\n";
+				messageToReturn += "[" + singleSentence.getInsertionTime() + "] " + "From " + singleSentence.getUsernameOne() + ": " + singleSentence.getSentenceText() + "\n";
 				
 			}
 			
