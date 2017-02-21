@@ -30,7 +30,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		        		return;
 		        }
 		        
-		        switch(commandSplits[0]){
+		        switch(commandSplits[0].toLowerCase()){
 		        	case"/start": //Stefano
 		        	case "/help": //Stefano
 		        		message.setText(HelpHaldler.getHelpMessage());
