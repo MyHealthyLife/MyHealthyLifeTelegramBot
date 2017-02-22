@@ -11,8 +11,11 @@ public class Main {
 
         TelegramBotsApi botsApi = new TelegramBotsApi();
 
+        MyHealthyLifeBot myHealthyLifeBot=new MyHealthyLifeBot();
+        myHealthyLifeBot.inizializeExecutor();
+        
         try {
-            botsApi.registerBot(new MyHealthyLifeBot());
+            botsApi.registerBot(myHealthyLifeBot);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
