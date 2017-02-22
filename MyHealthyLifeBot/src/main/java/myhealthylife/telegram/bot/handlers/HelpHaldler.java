@@ -10,7 +10,7 @@ public class HelpHaldler {
 		message+="/birthdate\n";
 		message+="/unregister\n";
 		message+="/healthstate visualize your current health state\n";
-		message+="/measureHistory visualize the history of you measures\n";
+		message+="/measure_history visualize the history of you measures\n";
 		message+="/addmeasure <type> <value> save a new measure\n";
 		message+="/randomsentence \n";
 		message+="/sentenceforme \n";
@@ -19,8 +19,8 @@ public class HelpHaldler {
 		message+="/ranking\n";
 		message+="/send\n";
 		message+="/receive\n";
-		message+="/newRecipe\n";
-		message+="/updateRecipe\n";
+		message+="/new_recipe\n";
+		message+="/update_recipe\n";
 		message+="/newFood\n";
 		message+="/newGoal\n";
 		

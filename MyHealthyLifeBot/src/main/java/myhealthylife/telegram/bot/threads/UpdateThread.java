@@ -78,7 +78,7 @@ public class UpdateThread implements Runnable{
 		        		
 		        		message.setText(HealthProfileHandler.getCurrentHealth(update.getMessage().getFrom().getUserName()));
 		        		break;
-		        	case "/measureHistory": //Stefano (done)
+		        	case "/measure_history": //Stefano (done)
 		        		message.setText(HealthProfileHandler.getHealthHistory(update.getMessage().getFrom().getUserName()));
 		        		break;
 		        	case "/addmeasure": //addmeasure weight 80 //Stefano (done)
@@ -120,9 +120,9 @@ public class UpdateThread implements Runnable{
 		        			message.setText(SentenceHandler.receiveSentences(update.getMessage().getFrom().getUserName()));
 		        		}
 		        		break;
-		        	case "/newRecipe": //<max_cal> //Stefano
+		        	case "/new_recipe": //<max_cal> //Stefano
 		        		break;
-		        	case "/updateRecipe": //Stefano
+		        	case "/update_recipe": //Stefano
 		        		break;
 		        	case "/newFood"://Stefano
 		        		break;
