@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @XmlRootElement(name="person")
 public class Person implements Serializable{
 
@@ -14,6 +13,7 @@ public class Person implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 
     private long idPerson;
 	
@@ -32,6 +32,8 @@ public class Person implements Serializable{
 	private String telegramUsername;
 	
 	private HealthProfile healthProfile;
+	
+	private String telegramID;
 
 	public long getIdPerson() {
 		return idPerson;
@@ -66,8 +68,6 @@ public class Person implements Serializable{
 	}
 	
 	
-	
-
 	public String getUsername() {
 		return username;
 	}
@@ -106,5 +106,13 @@ public class Person implements Serializable{
 
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getTelegramID() {
+		return telegramID;
+	}
+
+	public void setTelegramID(String telegramID) {
+		this.telegramID = telegramID;
 	}
 }
