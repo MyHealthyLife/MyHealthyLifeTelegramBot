@@ -33,6 +33,8 @@ public class UpdateThread implements Runnable{
 		        System.out.println(update.getMessage().getFrom().getUserName());
 		        System.out.println(update.getMessage().getFrom().getId());
 		        
+		        boolean newSubscription=false;
+		        
 		        String commandSplits[]=tokens[0].split("@");
 		        if(commandSplits.length>1){
 		        	/*if the command is sent in a group may be like "/addmeasure@myhealthylife_bot" if the username is not the username of the bot
@@ -43,7 +45,9 @@ public class UpdateThread implements Runnable{
 		        
 		        switch(commandSplits[0].toLowerCase()){
 		        	case"/start": //Stefano
-		        		DailySentence.chatIds.add(update.getMessage().getChatId());
+		        	case "/start_notifications":
+		        		newSubscription=true;
+		        		DailySentence.registerToDailyNotification(message.getChatId(), update.getMessage().getFrom().getId());
 		        	case "/help": //Stefano
 		        		message.setText(HelpHaldler.getHelpMessage());
 		        		break;
@@ -137,6 +141,14 @@ public class UpdateThread implements Runnable{
 		        }
 		        
 		        myHealthyLifeBot.sendMessageResponse(message);
+		        
+		        if(newSubscription){
+		        	String msg="Subscription to daily message activated! type /unsubscribe_notification to disable it";
+		        	SendMessage mesg=new SendMessage();
+		        	mesg.setChatId(update.getMessage().getChatId());
+		        	mesg.setText(msg);
+		        	myHealthyLifeBot.sendMessageResponse(mesg);
+		        }
 		    }
 	}
 	
