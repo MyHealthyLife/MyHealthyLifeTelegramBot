@@ -13,7 +13,7 @@ public enum ChatsDataDao {
         if (emf!=null) {
             emf.close();
         }
-        emf = Persistence.createEntityManagerFactory("service01-DataService");
+        emf = Persistence.createEntityManagerFactory("MyHealthyLifeBot");
     }
 
     public EntityManager createEntityManager() {

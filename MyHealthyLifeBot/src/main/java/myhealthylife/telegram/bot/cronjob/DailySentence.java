@@ -2,6 +2,7 @@ package myhealthylife.telegram.bot.cronjob;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.TimerTask;
 
 import javax.ws.rs.core.MediaType;
@@ -14,6 +15,7 @@ import org.telegram.telegrambots.updateshandlers.SentCallback;
 import myhealthylife.dataservice.model.People;
 import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.telegram.bot.MyHealthyLifeBot;
+import myhealthylife.telegram.bot.model.entities.ChatsData;
 import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class DailySentence extends TimerTask {
@@ -47,14 +49,15 @@ public class DailySentence extends TimerTask {
 			SendMessage message= new SendMessage();
 			
 		}*/
+		List<ChatsData> chatsDatas=ChatsData.getAll();
 		
-		Iterator<Long> it=chatIds.iterator();
+		Iterator<ChatsData> it=chatsDatas.iterator();
 		
 		while(it.hasNext()){
-			Long l=it.next();
+			ChatsData c=it.next();
 			
 			SendMessage message=new SendMessage();
-			message.setChatId(l);
+			message.setChatId(c.getChatId());
 			message.setText("LOL");
 			myHealthyLifeBot.sendMessageResponse(message);
 		}
