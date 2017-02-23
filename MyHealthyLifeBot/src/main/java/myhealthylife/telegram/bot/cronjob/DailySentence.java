@@ -52,6 +52,17 @@ public class DailySentence extends TimerTask {
     	mesg.setText(msg);
     	myHealthyLifeBot.sendMessageResponse(mesg);
 	}
+	
+	public static void unsubscribe(MyHealthyLifeBot myHealthyLifeBot,String chatId,Integer personId){
+		List<ChatsData> list=ChatsData.getByChatIDandPersonID(chatId, personId);
+		if(list.size()==0){
+			return;
+		}
+		ChatsData c=list.get(0);
+		
+		ChatsData.remove(c.getId());
+		
+	}
 
 	@Override
 	public void run() {
@@ -96,7 +107,7 @@ public class DailySentence extends TimerTask {
 			}
 			
 			Person p=res.readEntity(Person.class);
-			String msg=SentenceHandler.getSentenceForMe(p.getTelegramUsername());
+			String msg="@"+p.getTelegramUsername()+" "+SentenceHandler.getSentenceForMe(p.getTelegramUsername());
 			
 			SendMessage message=new SendMessage();
 			message.setChatId(c.getChatId());

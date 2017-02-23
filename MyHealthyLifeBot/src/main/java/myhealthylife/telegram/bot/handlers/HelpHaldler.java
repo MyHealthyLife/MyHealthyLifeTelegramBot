@@ -23,6 +23,8 @@ public class HelpHaldler {
 		message+="/update_recipe\n";
 		message+="/newFood\n";
 		message+="/newGoal\n";
+		message+="/start_notifications\n";
+		message+="/unsubscribe_notification\n";
 		
 		return message;
 	}

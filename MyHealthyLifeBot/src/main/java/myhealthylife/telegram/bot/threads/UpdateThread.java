@@ -45,11 +45,14 @@ public class UpdateThread implements Runnable{
 		        
 		        switch(commandSplits[0].toLowerCase()){
 		        	case"/start": //Stefano
-		        	case "/start_notifications":
-		        		newSubscription=true;
+		        		
 		        		DailySentence.registerToDailyNotification(myHealthyLifeBot,message.getChatId(), update.getMessage().getFrom().getId());
 		        	case "/help": //Stefano
 		        		message.setText(HelpHaldler.getHelpMessage());
+		        		break;
+		        	case "/start_notifications":
+		        		DailySentence.registerToDailyNotification(myHealthyLifeBot,message.getChatId(), update.getMessage().getFrom().getId());
+		        		newSubscription=true;
 		        		break;
 		        	case "/register": // Simone (done)
 		        		
@@ -134,13 +137,18 @@ public class UpdateThread implements Runnable{
 		        		break;
 		        	case "/newGoal":
 		        		break;
+		        	case "/unsubscribe_notification":
+		        		DailySentence.unsubscribe(myHealthyLifeBot,message.getChatId(), update.getMessage().getFrom().getId());
+		        		message.setText("unsubscribed for daily notification");
+		        		break;
 		        	default:
 		        		message.setText(HelpHaldler.getCommandNotFound());
 		        		break;
 		        		
 		        }
 		        
-		        myHealthyLifeBot.sendMessageResponse(message);
+		        if(!newSubscription)
+		        	myHealthyLifeBot.sendMessageResponse(message);
 		        
 		    }
 	}

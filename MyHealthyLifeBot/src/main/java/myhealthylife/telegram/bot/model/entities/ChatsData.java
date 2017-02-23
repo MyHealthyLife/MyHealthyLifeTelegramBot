@@ -14,6 +14,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
+import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.telegram.bot.model.dao.ChatsDataDao;
 
 @Entity
@@ -62,6 +63,28 @@ public class ChatsData implements Serializable{
         ChatsDataDao.instance.closeConnections(em);
         return chatsData;
 	}
+	
+	public static ChatsData getById(long Id) {
+        EntityManager em = ChatsDataDao.instance.createEntityManager();
+        ChatsData c = em.find(ChatsData.class, Id);
+        ChatsDataDao.instance.closeConnections(em);
+        return c;
+    }
+	
+	 public static void remove(long id) {
+		 ChatsData c=getById(id);
+	    	
+	    	if(c==null)
+	    		return;
+	    	
+	        EntityManager em = ChatsDataDao.instance.createEntityManager();
+	        EntityTransaction tx = em.getTransaction();
+	        tx.begin();
+	        c=em.merge(c);
+	        em.remove(c);
+	        tx.commit();
+	        ChatsDataDao.instance.closeConnections(em);
+	    }
 
 	public String getChatId() {
 		return chatId;
