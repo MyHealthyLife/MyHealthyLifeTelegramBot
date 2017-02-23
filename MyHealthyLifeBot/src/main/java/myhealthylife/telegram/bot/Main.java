@@ -30,6 +30,6 @@ public class Main {
         Timer t=new Timer();
         DailySentence ds=new DailySentence(myHealthyLifeBot);
         
-        t.scheduleAtFixedRate(ds, 0, 5000);
+        //t.scheduleAtFixedRate(ds, 0, 5000);
     }
 }
