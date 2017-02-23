@@ -47,7 +47,16 @@ public class SentenceHandler {
 	
 	
 	
-	public static String getSentenceForMe(String username) {
+	public static String getSentenceForMe(String personId) {
+		
+		Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
+		
+		if(resPerson.getStatus()!=Response.Status.OK.getStatusCode()){
+			System.out.println(resPerson.getStatus());
+			return "Information not available ";
+		}
+		Person p=resPerson.readEntity(Person.class);
+		String username=p.getUsername();
 		
 		Sentence s = null;
 		
@@ -64,7 +73,18 @@ public class SentenceHandler {
 	
 	
 	
-	public static String sendSentence(String fromUser, String toUser, String sentenceType, String sentenceMotive) {
+	public static String sendSentence(String fromUserId, String toUser, String sentenceType, String sentenceMotive) {
+		
+		
+		Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+fromUserId).request().accept(MediaType.APPLICATION_JSON).get();
+		
+		if(resPerson.getStatus()!=Response.Status.OK.getStatusCode()){
+			System.out.println(resPerson.getStatus());
+			return "Information not available ";
+		}
+		Person p=resPerson.readEntity(Person.class);
+		String fromUser=p.getUsername();
+		
 		
 		DedicatedSentence s = null;
 		
@@ -81,7 +101,16 @@ public class SentenceHandler {
 	
 
 
-	public static String receiveSentences(String username) {
+	public static String receiveSentences(String personId) {
+		
+		Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
+		
+		if(resPerson.getStatus()!=Response.Status.OK.getStatusCode()){
+			System.out.println(resPerson.getStatus());
+			return "Information not available ";
+		}
+		Person p=resPerson.readEntity(Person.class);
+		String username=p.getUsername();
 		
 		List<DedicatedSentence> dedicatedSListForUser = null;
 		

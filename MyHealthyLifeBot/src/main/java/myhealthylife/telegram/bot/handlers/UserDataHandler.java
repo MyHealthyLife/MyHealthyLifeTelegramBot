@@ -43,11 +43,11 @@ public class UserDataHandler {
 	}
 	
 	
-	public static Person getPerson(String username) {
+	public static Person getPerson(String personId) {
 		
 		Person p = null;
 		
-		Response res= ServicesLocator.getCentric1Connection().path("user/data/telegram/" + username).request().accept(MediaType.APPLICATION_JSON).get();
+		Response res= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/" + personId).request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 			p=res.readEntity(Person.class);
@@ -59,9 +59,11 @@ public class UserDataHandler {
 		
 	}
 	
-	public static String updateName(String username, String name) {
+	public static String updateName(String personId, String name) {
 		
-		Person p = UserDataHandler.getPerson(username);
+		Person p = UserDataHandler.getPerson(personId);
+		
+		String username=p.getUsername();
 		
 		if(p!=null) {
 		
@@ -85,9 +87,10 @@ public class UserDataHandler {
 	
 	
 	
-	public static String updateSurnameName(String username, String surname) {
+	public static String updateSurnameName(String personId, String surname) {
 		
-		Person p = UserDataHandler.getPerson(username);
+		Person p = UserDataHandler.getPerson(personId);
+		String username=p.getUsername();
 		
 		if(p!=null) {
 		
@@ -111,9 +114,11 @@ public class UserDataHandler {
 	
 	
 	
-	public static String updateBirthdate(String username, String birthdate) {
+	public static String updateBirthdate(String personId, String birthdate) {
 		
-		Person p = UserDataHandler.getPerson(username);
+		Person p = UserDataHandler.getPerson(personId);
+		
+		String username=p.getUsername();
 		
 		if(p!=null) {
 
@@ -141,10 +146,12 @@ public class UserDataHandler {
 	
 	
 	
-	public static String deleteUserInformation(String username, String confirmation) {
+	public static String deleteUserInformation(String personId_t, String confirmation) {
 		
 	
-		Person p = UserDataHandler.getPerson(username);
+		Person p = UserDataHandler.getPerson(personId_t);
+		
+		String username=p.getUsername();
 		
 		if(p!=null) {
 	

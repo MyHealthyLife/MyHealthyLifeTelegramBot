@@ -60,21 +60,21 @@ public class UpdateThread implements Runnable{
 		        		break;
 		        	case "/name"://change name Simone (done)
 		        		
-		        		message.setText(UserDataHandler.updateName(update.getMessage().getFrom().getUserName(), tokens[1]));
+		        		message.setText(UserDataHandler.updateName(""+update.getMessage().getFrom().getId(), tokens[1]));
 		        		break;
 		        	case "/surname": //change surname Simone (done)
 		        		
-		        		message.setText(UserDataHandler.updateSurnameName(update.getMessage().getFrom().getUserName(), tokens[1]));
+		        		message.setText(UserDataHandler.updateSurnameName(""+update.getMessage().getFrom().getId(), tokens[1]));
 		        		break;
 		        	case "/birthdate": //change birthdate Simone (done)
 		        		
-		        		message.setText(UserDataHandler.updateBirthdate(update.getMessage().getFrom().getUserName(), tokens[1]));
+		        		message.setText(UserDataHandler.updateBirthdate(""+update.getMessage().getFrom().getId(), tokens[1]));
 		        		break;
 		        	case "/unregister": // Simone (done)
 		        		
 		        		try{
 			        		if(tokens[1].equals("confirm")) {
-			        			message.setText(UserDataHandler.deleteUserInformation(update.getMessage().getChat().getUserName(), tokens[1]));
+			        			message.setText(UserDataHandler.deleteUserInformation(""+update.getMessage().getFrom().getId(), tokens[1]));
 			        		}
 			        		else {
 			        			message.setText("If you really want to unregister please write /unregister confirm");
@@ -85,14 +85,14 @@ public class UpdateThread implements Runnable{
 		        		break;
 		        	case "/healthstate": //Stefano (done)
 		        		
-		        		message.setText(HealthProfileHandler.getCurrentHealth(update.getMessage().getFrom().getUserName()));
+		        		message.setText(HealthProfileHandler.getCurrentHealth(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	case "/measure_history": //Stefano (done)
-		        		message.setText(HealthProfileHandler.getHealthHistory(update.getMessage().getFrom().getUserName()));
+		        		message.setText(HealthProfileHandler.getHealthHistory(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	case "/addmeasure": //addmeasure weight 80 //Stefano (done)
 		        		if(tokens.length==3)
-		        			message.setText(HealthProfileHandler.addMeasure(update.getMessage().getFrom().getUserName(), tokens[1], tokens[2]));
+		        			message.setText(HealthProfileHandler.addMeasure(""+update.getMessage().getFrom().getId(), tokens[1], tokens[2]));
 		        		else
 		        			message.setText("use /addmeasure <type> <value>");
 		        		break;
@@ -105,7 +105,7 @@ public class UpdateThread implements Runnable{
 		        		break;
 		        	case "/sentenceforme": // Simone (done)
 
-		        		message.setText(SentenceHandler.getSentenceForMe(update.getMessage().getFrom().getUserName()));
+		        		message.setText(SentenceHandler.getSentenceForMe(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	case "/foodsForMe": // <max-cal>  extra maxCal service
 		        		break;
@@ -114,19 +114,19 @@ public class UpdateThread implements Runnable{
 		        		break;
 		        	case "/ranking": // Simone (done)
 		        		
-		        		message.setText(RankingHandler.getUserRank(update.getMessage().getFrom().getUserName()));
+		        		message.setText(RankingHandler.getUserRank(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	case "/send": //<user> <sentence> Simone (done)
 		        		
 		        		if(tokens.length==4)
-		        			message.setText(SentenceHandler.sendSentence((update.getMessage().getFrom().getUserName()), tokens[1], tokens[2], tokens[3]));
+		        			message.setText(SentenceHandler.sendSentence((""+update.getMessage().getFrom().getId()), tokens[1], tokens[2], tokens[3]));
 		        		else
 		        			message.setText("use /send <user> <sentence type> <sentence motive>");
 		        		break;
 		        	case "/receive": // Simone (done)
 		        		
 		        		if(tokens.length==1) {
-		        			message.setText(SentenceHandler.receiveSentences(update.getMessage().getFrom().getUserName()));
+		        			message.setText(SentenceHandler.receiveSentences(""+update.getMessage().getFrom().getId()));
 		        		}
 		        		break;
 		        	case "/new_recipe": //<max_cal> //Stefano

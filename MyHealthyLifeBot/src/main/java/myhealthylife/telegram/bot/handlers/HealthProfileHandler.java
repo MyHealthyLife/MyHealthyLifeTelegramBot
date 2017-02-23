@@ -17,11 +17,11 @@ import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class HealthProfileHandler {
 
-	public static String getCurrentHealth(String username){
+	public static String getCurrentHealth(String personId){
 		
 		Person p=null;
 		
-		Response res= ServicesLocator.getCentric1Connection().path("user/data/telegram/"+username).request().accept(MediaType.APPLICATION_JSON).get();
+		Response res= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode())
 		{
@@ -56,8 +56,20 @@ public class HealthProfileHandler {
 		}
 	}
 	
-	public static String getHealthHistory(String username){
-		Response res=ServicesLocator.getCentric1Connection().path("measure/"+username+"/history").request().accept(MediaType.APPLICATION_JSON).get();
+	public static String getHealthHistory(String personId){
+		
+		
+		Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
+		
+		if(resPerson.getStatus()!=Response.Status.OK.getStatusCode()){
+			System.out.println(resPerson.getStatus());
+			return "Information not available ";
+		}
+		
+		Person p=resPerson.readEntity(Person.class);
+		
+		
+		Response res=ServicesLocator.getCentric1Connection().path("measure/"+p.getUsername()+"/history").request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(res.getStatus()!=Response.Status.OK.getStatusCode()){
 			System.out.println(res.getStatus());
@@ -83,7 +95,19 @@ public class HealthProfileHandler {
 		return result;
 	}
 	
-	public static String addMeasure(String username,String type,String value){
+	public static String addMeasure(String personId,String type,String value){
+		
+		Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
+		
+		if(resPerson.getStatus()!=Response.Status.OK.getStatusCode()){
+			System.out.println(resPerson.getStatus());
+			return "Information not available ";
+		}
+		
+		Person p=resPerson.readEntity(Person.class);
+		String username=p.getUsername();
+		
+		
 		Measure m=new Measure();
 		m.setDateRegistered(new Date(System.currentTimeMillis()));
 		m.setMeasureType(type);
