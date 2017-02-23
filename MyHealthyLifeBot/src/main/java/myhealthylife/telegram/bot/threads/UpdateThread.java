@@ -5,6 +5,7 @@ import org.telegram.telegrambots.api.objects.Update;
 
 import myhealthylife.telegram.bot.MyHealthyLifeBot;
 import myhealthylife.telegram.bot.TokenHandler;
+import myhealthylife.telegram.bot.cronjob.DailySentence;
 import myhealthylife.telegram.bot.handlers.HealthProfileHandler;
 import myhealthylife.telegram.bot.handlers.HelpHaldler;
 import myhealthylife.telegram.bot.handlers.RankingHandler;
@@ -42,6 +43,7 @@ public class UpdateThread implements Runnable{
 		        
 		        switch(commandSplits[0].toLowerCase()){
 		        	case"/start": //Stefano
+		        		DailySentence.chatIds.add(update.getMessage().getChatId());
 		        	case "/help": //Stefano
 		        		message.setText(HelpHaldler.getHelpMessage());
 		        		break;
