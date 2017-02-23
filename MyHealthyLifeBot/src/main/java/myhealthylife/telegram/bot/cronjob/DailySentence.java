@@ -69,13 +69,13 @@ public class DailySentence extends TimerTask {
 		
 		System.out.print("[TIMER TASK] sending...");
 		
-		Response resp=ServicesLocator.getCentric1Connection().path("/people").request().accept(MediaType.APPLICATION_JSON).get();
+		/*Response resp=ServicesLocator.getCentric1Connection().path("/people").request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(resp.getStatus()!=Response.Status.OK.getStatusCode()){
 			return;
 		}
 		
-		/*People people=resp.readEntity(People.class);
+		People people=resp.readEntity(People.class);
 		
 		Iterator<Person> it=people.getPerson().iterator();
 		
@@ -107,7 +107,7 @@ public class DailySentence extends TimerTask {
 			}
 			
 			Person p=res.readEntity(Person.class);
-			String msg="@"+p.getTelegramUsername()+" "+SentenceHandler.getSentenceForMe(p.getTelegramUsername());
+			String msg="@"+p.getTelegramUsername()+" "+SentenceHandler.getSentenceForMe(""+c.getPersonId());
 			
 			SendMessage message=new SendMessage();
 			message.setChatId(c.getChatId());
