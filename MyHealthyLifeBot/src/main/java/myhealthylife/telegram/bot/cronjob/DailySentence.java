@@ -28,12 +28,29 @@ public class DailySentence extends TimerTask {
 		this.myHealthyLifeBot=myHealthyLifeBot;
 	}
 	
-	public static void registerToDailyNotification(String string,Integer personId){//Check if is already exis
+	public static void registerToDailyNotification(MyHealthyLifeBot myHealthyLifeBot,String chatId,Integer personId){
+		
+		if(ChatsData.getByChatIDandPersonID(chatId, personId).size()!=0)
+		{
+			String msg="Already subscribed";
+	    	SendMessage mesg=new SendMessage();
+	    	mesg.setChatId(chatId);
+	    	mesg.setText(msg);
+	    	myHealthyLifeBot.sendMessageResponse(mesg);
+	    	return;
+		}
+		
 		ChatsData c=new ChatsData();
-		c.setChatId(string);
+		c.setChatId(chatId);
 		c.setPersonId(personId);
 		
 		ChatsData.save(c);
+		
+		String msg="Subscription to daily message activated! type /unsubscribe_notification to disable it";
+    	SendMessage mesg=new SendMessage();
+    	mesg.setChatId(chatId);
+    	mesg.setText(msg);
+    	myHealthyLifeBot.sendMessageResponse(mesg);
 	}
 
 	@Override

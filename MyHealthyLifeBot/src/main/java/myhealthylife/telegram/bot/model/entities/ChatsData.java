@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
 
 import myhealthylife.telegram.bot.model.dao.ChatsDataDao;
 
@@ -37,6 +38,17 @@ public class ChatsData implements Serializable{
 	public static List<ChatsData> getAll(){
 		EntityManager em=ChatsDataDao.instance.createEntityManager();
 		List<ChatsData> list=em.createNamedQuery("ChatsData.findAll",ChatsData.class).getResultList();
+		ChatsDataDao.instance.closeConnections(em);
+		return list;
+	}
+	
+	
+	public static List<ChatsData> getByChatIDandPersonID(String chatId, Integer personId){
+		EntityManager em=ChatsDataDao.instance.createEntityManager();
+		TypedQuery<ChatsData> query=em.createQuery("SELECT c FROM ChatsData c WHERE c.chatId=?1 AND c.personId=?2", ChatsData.class);
+		query.setParameter(1, chatId);
+		query.setParameter(2, personId);
+		List<ChatsData> list=query.getResultList();
 		ChatsDataDao.instance.closeConnections(em);
 		return list;
 	}

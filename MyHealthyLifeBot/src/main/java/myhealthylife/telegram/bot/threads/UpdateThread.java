@@ -47,7 +47,7 @@ public class UpdateThread implements Runnable{
 		        	case"/start": //Stefano
 		        	case "/start_notifications":
 		        		newSubscription=true;
-		        		DailySentence.registerToDailyNotification(message.getChatId(), update.getMessage().getFrom().getId());
+		        		DailySentence.registerToDailyNotification(myHealthyLifeBot,message.getChatId(), update.getMessage().getFrom().getId());
 		        	case "/help": //Stefano
 		        		message.setText(HelpHaldler.getHelpMessage());
 		        		break;
@@ -142,13 +142,6 @@ public class UpdateThread implements Runnable{
 		        
 		        myHealthyLifeBot.sendMessageResponse(message);
 		        
-		        if(newSubscription){
-		        	String msg="Subscription to daily message activated! type /unsubscribe_notification to disable it";
-		        	SendMessage mesg=new SendMessage();
-		        	mesg.setChatId(update.getMessage().getChatId());
-		        	mesg.setText(msg);
-		        	myHealthyLifeBot.sendMessageResponse(mesg);
-		        }
 		    }
 	}
 	
