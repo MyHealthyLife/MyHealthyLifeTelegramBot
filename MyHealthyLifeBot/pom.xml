@@ -142,6 +142,24 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>myhealthylife.telegram.bot.Main</mainClass>
+                        </manifest>
+                     <!-- <fileSets>
+			         <fileSet>
+			            <directory>src/main/server/app1</directory>
+			            <outputDirectory>app1</outputDirectory>
+			        </fileSet>
+				    </fileSets>-->
+				    
+                </archive>
+                <!-- <files>
+				        <file>
+				            <source>src/main/java/META-INF/persistence.xml</source>
+				            <outputDirectory>META-INF</outputDirectory>
+				        </file>
+				    </files> -->
                 </configuration>
                 <executions>
                     <execution>
