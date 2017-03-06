@@ -56,7 +56,10 @@ public class UpdateThread implements Runnable{
 		        		break;
 		        	case "/register": // Simone (done)
 		        		
-		        		message.setText(UserDataHandler.registerNewUser(update.getMessage().getFrom().getUserName(), tokens[1], tokens[2], tokens[3], tokens[4], tokens[5]));
+		        		if(tokens.length>1)
+		        			message.setText(UserDataHandler.registerNewUser(update.getMessage().getFrom().getId(), tokens[1]));
+		        		else
+		        			message.setText("Invalid command,\ntry /register <your HealthyLife username>");
 		        		break;
 		        	case "/name"://change name Simone (done)
 		        		

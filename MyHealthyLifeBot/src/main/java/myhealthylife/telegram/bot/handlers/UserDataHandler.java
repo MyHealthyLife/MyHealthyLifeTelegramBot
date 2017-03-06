@@ -10,13 +10,34 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import myhealthylife.dataservice.model.entities.Person;
-import myhealthylife.sentencegenerator.model.entities.Sentence;
 import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class UserDataHandler {
 
 	public static DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 	
+	
+	public static String registerNewUser(Integer telegramID,String serviceUsername){
+		Response resp=ServicesLocator.getCentric1Connection().path("/user/data/"+serviceUsername).request().accept(MediaType.APPLICATION_JSON).get();
+		
+		/*check if centric01 returns an "ok"*/
+		if(resp.getStatus()!=Response.Status.OK.getStatusCode()){
+			return "Username not found, register first on the webapp";
+		}
+		
+		Person p=resp.readEntity(Person.class);
+		p.setTelegramID(""+telegramID);
+		
+		Response updateRes=ServicesLocator.getCentric1Connection().path("/user/data/"+serviceUsername).request().put(Entity.entity(p, MediaType.APPLICATION_JSON));
+		
+		if(updateRes.getStatus()!=Response.Status.OK.getStatusCode()){
+			return "Unable to register";
+		}
+		
+		return "Succesfully registered to the system";
+	}
+	
+	@Deprecated
 	public static String registerNewUser(String username, String password, String name, String surname, String sex, String birthdate) {
 		
 		Person p = new Person();
