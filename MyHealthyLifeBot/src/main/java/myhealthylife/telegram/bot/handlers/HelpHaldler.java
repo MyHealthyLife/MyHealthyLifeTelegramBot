@@ -14,7 +14,7 @@ public class HelpHaldler {
 		message+="/addmeasure <type> <value> save a new measure\n";
 		message+="/randomsentence \n";
 		message+="/sentenceforme \n";
-		message+="/foodsForMe\n";
+		message+="/foods_for_me\n";
 		message+="/goal\n";
 		message+="/ranking\n";
 		message+="/send\n";

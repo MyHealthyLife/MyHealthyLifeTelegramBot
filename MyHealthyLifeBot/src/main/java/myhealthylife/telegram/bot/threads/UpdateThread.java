@@ -6,6 +6,7 @@ import org.telegram.telegrambots.api.objects.Update;
 import myhealthylife.telegram.bot.MyHealthyLifeBot;
 import myhealthylife.telegram.bot.TokenHandler;
 import myhealthylife.telegram.bot.cronjob.DailySentence;
+import myhealthylife.telegram.bot.handlers.FoodHandler;
 import myhealthylife.telegram.bot.handlers.HealthProfileHandler;
 import myhealthylife.telegram.bot.handlers.HelpHaldler;
 import myhealthylife.telegram.bot.handlers.RankingHandler;
@@ -110,7 +111,8 @@ public class UpdateThread implements Runnable{
 
 		        		message.setText(SentenceHandler.getSentenceForMe(""+update.getMessage().getFrom().getId()));
 		        		break;
-		        	case "/foodsForMe": // <max-cal>  extra maxCal service
+		        	case "/foods_for_me": // <max-cal>  extra maxCal service
+		        		message.setText(FoodHandler.foodForMe(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	//service 02
 		        	case "/goal": //my goals
