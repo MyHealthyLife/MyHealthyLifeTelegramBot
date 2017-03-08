@@ -1,12 +1,15 @@
 package myhealthylife.telegram.bot.handlers;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.sun.xml.bind.v2.schemagen.xmlschema.List;
 
 import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.telegram.bot.utils.ServicesLocator;
+import myhealthylife.nutritionservice.soap.*;
 
 public class FoodHandler {
 
@@ -28,7 +31,29 @@ public class FoodHandler {
 			return "An error occurs during information retrival (Foods)";
 		}
 		
-		return foodsResponse.toString();
+		List<Food> foods=foodsResponse.readEntity(FoodList.class).getFood();
+		
+		Iterator<Food> it=foods.iterator();
+		
+		String message="";
+		
+		while(it.hasNext()){
+			Food f=it.next();
+			if(f.getName()!=null && f.getCalories()!=null)
+				message+=f.getName()+"( "+f.getCalories()+"kcal )";
+			else
+				continue;
+			
+			if(f.getFoodType()!=null){
+				if(f.getFoodType().getCategory()!=null){
+					message+=" [ type: "+f.getFoodType().getCategory()+"]";
+				}
+			}
+			
+			message+="\n";
+		}
+		
+		return message;
 		
 	}
 }
