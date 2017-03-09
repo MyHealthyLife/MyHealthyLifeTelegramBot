@@ -7,6 +7,7 @@ import myhealthylife.telegram.bot.MyHealthyLifeBot;
 import myhealthylife.telegram.bot.TokenHandler;
 import myhealthylife.telegram.bot.cronjob.DailySentence;
 import myhealthylife.telegram.bot.handlers.FoodHandler;
+import myhealthylife.telegram.bot.handlers.GoalHandler;
 import myhealthylife.telegram.bot.handlers.HealthProfileHandler;
 import myhealthylife.telegram.bot.handlers.HelpHaldler;
 import myhealthylife.telegram.bot.handlers.RankingHandler;
@@ -116,6 +117,7 @@ public class UpdateThread implements Runnable{
 		        		break;
 		        	//service 02
 		        	case "/goal": //my goals
+		        		message.setText(GoalHandler.myGoals(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	case "/ranking": // Simone (done)
 		        		
