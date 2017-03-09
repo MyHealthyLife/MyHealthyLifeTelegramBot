@@ -118,6 +118,7 @@ public class UpdateThread implements Runnable{
 		        	//service 02
 		        	case "/goal": //my goals
 		        		message.setText(GoalHandler.myGoals(""+update.getMessage().getFrom().getId()));
+		        		message.enableMarkdown(true);
 		        		break;
 		        	case "/ranking": // Simone (done)
 		        		

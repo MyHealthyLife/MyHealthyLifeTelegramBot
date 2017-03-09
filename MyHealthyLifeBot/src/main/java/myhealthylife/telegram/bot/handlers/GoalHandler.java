@@ -40,18 +40,18 @@ public class GoalHandler {
 		while(it.hasNext()){
 			Goal g=it.next();
 			
-			message+=""+g.getGoalName()+"\n";
+			message+="*"+g.getGoalName().toUpperCase()+"*\n";
 			message+="\tgoal: "+g.getValueToReach()+"\n";
 			message+="\tyour value: "+g.getActualValue()+"\n";
 			
 			if(g.getDifference()==0){
-				message+="\tGood work!!!";
+				message+="\t*Good work!!!*";
 			}
 			else if(g.getDifference()<0){
-				message+="\tloos "+(-1*g.getDifference());
+				message+="\t*loos "+(-1*g.getDifference())+"*";
 			}
 			else{
-				message+="\tgain "+g.getDifference();
+				message+="\t*gain "+g.getDifference()+"*";
 			}
 			
 			message+="\n\n";
