@@ -3,6 +3,7 @@ package myhealthylife.telegram.bot.handlers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.ws.rs.client.Entity;
@@ -10,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import myhealthylife.dataservice.model.entities.Person;
+import myhealthylife.dataservice.model.util.Utilities;
 import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class UserDataHandler {
@@ -46,8 +48,8 @@ public class UserDataHandler {
 		p.setPassword(password);
 		p.setFirstname(name);
 		try {
-			p.setBirthdate(format.parse(birthdate));
-		} catch (ParseException e) {
+			p.setBirthdate(birthdate);
+		} catch (Exception e) {
 			p.setBirthdate(null);
 		}
 		p.setSex(sex);
@@ -94,7 +96,7 @@ public class UserDataHandler {
 			
 			if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 				p=res.readEntity(Person.class);
-				return p.getUsername() + " user updated: \nFirstname: " + p.getFirstname() + "\nLastname: " + p.getLastname() + "\nSex: " + p.getSex() + "\nBirthdate: " + p.getBirthdate();
+				return p.getUsername() + " user updated: \nFirstname: " + p.getFirstname() + "\nLastname: " + p.getLastname() + "\nSex: " + p.getSex() + "\nBirthdate: " + Utilities.getReadableDate(p.getBirthdate());
 			}
 			else{
 				return "An unexpected error occured";
@@ -121,7 +123,7 @@ public class UserDataHandler {
 			
 			if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 				p=res.readEntity(Person.class);
-				return p.getUsername() + " user updated: \nFirstname: " + p.getFirstname() + "\nLastname: " + p.getLastname() + "\nSex: " + p.getSex() + "\nBirthdate: " + p.getBirthdate();
+				return p.getUsername() + " user updated: \nFirstname: " + p.getFirstname() + "\nLastname: " + p.getLastname() + "\nSex: " + p.getSex() + "\nBirthdate: " + Utilities.getReadableDate(p.getBirthdate());
 			}
 			else{
 				return "An unexpected error occured";
@@ -144,15 +146,15 @@ public class UserDataHandler {
 		if(p!=null) {
 
 			try {
-				p.setBirthdate(format.parse(birthdate));
-			} catch (ParseException e) {
+				p.setBirthdate(birthdate);
+			} catch (Exception e) {
 				// do nothing
 			}
 			Response res= ServicesLocator.getCentric1Connection().path("user/data/" + username).request().accept(MediaType.APPLICATION_JSON).put(Entity.entity(p, MediaType.APPLICATION_JSON));
 			
 			if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 				p=res.readEntity(Person.class);
-				return p.getUsername() + " user updated: \nFirstname: " + p.getFirstname() + "\nLastname: " + p.getLastname() + "\nSex: " + p.getSex() + "\nBirthdate: " + p.getBirthdate();
+				return p.getUsername() + " user updated: \nFirstname: " + p.getFirstname() + "\nLastname: " + p.getLastname() + "\nSex: " + p.getSex() + "\nBirthdate: " + Utilities.getReadableDate(p.getBirthdate());
 			}
 			else{
 				return "An unexpected error occured";
