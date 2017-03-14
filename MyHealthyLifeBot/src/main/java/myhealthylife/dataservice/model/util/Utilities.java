@@ -46,4 +46,15 @@ public class Utilities {
 	public static Date getCurrentDate(){
 		return getDate(System.currentTimeMillis());
 	}
+	
+	public static String getReadableDate(String dateToParse) {
+		
+		long dateInMilliseconds = Long.parseLong(dateToParse);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd");    
+		Date resultdate = new Date(dateInMilliseconds);
+		System.out.println(sdf.format(resultdate));
+		
+		return sdf.format(resultdate);
+		
+	}
 }
