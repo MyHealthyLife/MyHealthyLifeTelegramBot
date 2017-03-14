@@ -1,6 +1,7 @@
 package myhealthylife.dataservice.model.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Person implements Serializable{
 	
 	private String sex;
 	
-	private Date birthdate;
+	private String birthdate;
 	
 	private String username;
 	
@@ -61,11 +62,11 @@ public class Person implements Serializable{
 		this.lastname = lastname;
 	}
 
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 	
