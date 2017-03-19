@@ -14,7 +14,7 @@ public class HelpHaldler {
 		message+="/addmeasure <type> <value> save a new measure\n";
 		message+="/randomsentence Get a random sentence to motivate the user\n";
 		message+="/sentenceforme Get a specific sentence based on your measures\n";
-		message+="/foods_for_me Gets specific type of foods based on your health state\n";
+		message+="/foodsforme Gets specific type of foods based on your health state\n";
 		message+="/goal Gets the goals you should reach\n";
 		message+="/ranking Gets a compact ranking with the neareast users around your position\n";
 		message+="/send <destination user> <type> <trend (gain or loss)> Sends a sentence to a destination user\n";

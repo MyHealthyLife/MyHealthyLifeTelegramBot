@@ -112,7 +112,7 @@ public class UpdateThread implements Runnable{
 
 		        		message.setText(SentenceHandler.getSentenceForMe(""+update.getMessage().getFrom().getId()));
 		        		break;
-		        	case "/foods_for_me": // <max-cal>  extra maxCal service
+		        	case "/foodsforme": // <max-cal>  extra maxCal service
 		        		message.setText(FoodHandler.foodForMe(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	//service 02
