@@ -19,6 +19,7 @@ public class HelpHaldler {
 		message+="/ranking Gets a compact ranking with the neareast users around your position\n";
 		message+="/send <destination user> <type> <trend (gain or loss)> Sends a sentence to a destination user\n";
 		message+="/receive Receive all the sentences the other users dedicated to you within 7 days\n";
+		message+="/recipe <recipe name> Shows the details of an existing recipe\n";
 		message+="/new_recipe\n";
 		message+="/update_recipe\n";
 		message+="/newFood\n";

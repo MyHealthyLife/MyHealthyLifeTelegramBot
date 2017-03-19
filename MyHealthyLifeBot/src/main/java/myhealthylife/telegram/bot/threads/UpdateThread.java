@@ -137,6 +137,17 @@ public class UpdateThread implements Runnable{
 		        			message.setText(SentenceHandler.receiveSentences(""+update.getMessage().getFrom().getId()));
 		        		}
 		        		break;
+		        	case "/recipe": // Simone (done)
+		        		
+		        		if(tokens.length>=2) {
+		        			String recipeName = "";
+		        			for(int i=1;i<tokens.length;i++) {
+		        				recipeName += " " + tokens[i];
+		        			}
+		        			System.out.println(recipeName); recipeName = "Recipe test";
+		        			message.setText(FoodHandler.getRecipeDetails(""+update.getMessage().getFrom().getId(), recipeName));
+		        		}
+		        		break;
 		        	case "/new_recipe": //<max_cal> //Stefano
 		        		break;
 		        	case "/update_recipe": //Stefano
