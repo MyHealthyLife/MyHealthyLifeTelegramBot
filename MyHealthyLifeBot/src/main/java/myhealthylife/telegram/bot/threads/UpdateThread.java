@@ -138,13 +138,16 @@ public class UpdateThread implements Runnable{
 		        		}
 		        		break;
 		        	case "/recipe": // Simone (done)
-		        		
+
+	        			String recipeName = "";
 		        		if(tokens.length>=2) {
-		        			String recipeName = "";
 		        			for(int i=1;i<tokens.length;i++) {
-		        				recipeName += " " + tokens[i];
+		        				if(i!=1) {
+		        					recipeName += " ";
+		        				}
+		        				recipeName += tokens[i];
 		        			}
-		        			System.out.println(recipeName); recipeName = "Recipe test";
+		        			System.out.println(recipeName);
 		        			message.setText(FoodHandler.getRecipeDetails(""+update.getMessage().getFrom().getId(), recipeName));
 		        		}
 		        		break;

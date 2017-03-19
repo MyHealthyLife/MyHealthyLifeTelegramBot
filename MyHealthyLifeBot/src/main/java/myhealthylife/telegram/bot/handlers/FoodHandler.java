@@ -86,14 +86,36 @@ public class FoodHandler {
 		String message="";
 		
 		while(it.hasNext()){
-			Recipe f=it.next();
-			if(f.getName()!=null)
-				message+=f.getName()+"["+f.getCalories()+"kcal]";
-			else
+			
+			Recipe r=it.next();
+			List<Food> ingredients = r.getIngredients();
+			
+			if(r.getName()!=null) {
+				message+="RECIPE #" + r.getRecipeId() + ": " + r.getName()+"["+r.getCalories()+"kcal]\n";
+			}
+			else {
 				continue;
+			}
+			if(r.getDescription()!=null) {
+				message+="DESCRIPTION: " + r.getDescription();
+			}
+			if(ingredients!=null && ingredients.size()!=0) {
+				
+				message+="INGREDIENTS:";
+				for(int i=0;i<ingredients.size();i++) {
+					
+					Food singleIngredient = ingredients.get(i);
+					message+="\t" + i + " " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory();
+					
+				}
+				
+			}
 			
 			
-			message+="\n";
+			message+="\n__________\n\n";
+		}
+		if(message.equals("")) {
+			message += "No recipe named '" + recipeName + "' was found\n";
 		}
 		
 		return message;
