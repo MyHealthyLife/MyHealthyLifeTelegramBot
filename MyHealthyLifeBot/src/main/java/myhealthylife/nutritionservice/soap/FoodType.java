@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="idFoodType" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="idFoodType" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="category" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -33,22 +33,30 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class FoodType {
 
-    protected long idFoodType;
+    protected Long idFoodType;
     protected String category;
 
     /**
      * Recupera il valore della proprietà idFoodType.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getIdFoodType() {
+    public Long getIdFoodType() {
         return idFoodType;
     }
 
     /**
      * Imposta il valore della proprietà idFoodType.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setIdFoodType(long value) {
+    public void setIdFoodType(Long value) {
         this.idFoodType = value;
     }
 

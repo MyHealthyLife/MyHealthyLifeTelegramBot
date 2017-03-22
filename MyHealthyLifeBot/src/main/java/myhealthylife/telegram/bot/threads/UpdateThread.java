@@ -147,8 +147,14 @@ public class UpdateThread implements Runnable{
 		        				}
 		        				recipeName += tokens[i];
 		        			}
-		        			System.out.println(recipeName);
+		        			System.out.println("[" + recipeName + "]");
 		        			message.setText(FoodHandler.getRecipeDetails(""+update.getMessage().getFrom().getId(), recipeName));
+		        		}
+		        		break;
+		        	case "/recipesforme": // Simone (done)
+
+	        			if(tokens.length==1) {
+		        			message.setText(FoodHandler.getSuggestedRecipes(""+update.getMessage().getFrom().getId()));
 		        		}
 		        		break;
 		        	case "/new_recipe": //<max_cal> //Stefano

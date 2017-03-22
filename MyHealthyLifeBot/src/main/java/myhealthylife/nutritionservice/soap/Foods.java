@@ -27,6 +27,18 @@ public interface Foods {
 
     /**
      * 
+     * @return
+     *     returns myhealthylife.nutritionservice.soap.FoodList
+     */
+    @WebMethod
+    @WebResult(name = "foodList", targetNamespace = "")
+    @RequestWrapper(localName = "readFoodList", targetNamespace = "http://soap.nutritionservice.myhealthylife/", className = "myhealthylife.nutritionservice.soap.ReadFoodList")
+    @ResponseWrapper(localName = "readFoodListResponse", targetNamespace = "http://soap.nutritionservice.myhealthylife/", className = "myhealthylife.nutritionservice.soap.ReadFoodListResponse")
+    @Action(input = "http://soap.nutritionservice.myhealthylife/Foods/readFoodListRequest", output = "http://soap.nutritionservice.myhealthylife/Foods/readFoodListResponse")
+    public FoodList readFoodList();
+
+    /**
+     * 
      * @param foodId
      * @return
      *     returns myhealthylife.nutritionservice.soap.Food
@@ -78,18 +90,6 @@ public interface Foods {
     public void updateFood(
         @WebParam(name = "food", targetNamespace = "", mode = WebParam.Mode.INOUT)
         Holder<Food> food);
-
-    /**
-     * 
-     * @return
-     *     returns myhealthylife.nutritionservice.soap.FoodList
-     */
-    @WebMethod
-    @WebResult(name = "foodList", targetNamespace = "")
-    @RequestWrapper(localName = "readFoodList", targetNamespace = "http://soap.nutritionservice.myhealthylife/", className = "myhealthylife.nutritionservice.soap.ReadFoodList")
-    @ResponseWrapper(localName = "readFoodListResponse", targetNamespace = "http://soap.nutritionservice.myhealthylife/", className = "myhealthylife.nutritionservice.soap.ReadFoodListResponse")
-    @Action(input = "http://soap.nutritionservice.myhealthylife/Foods/readFoodListRequest", output = "http://soap.nutritionservice.myhealthylife/Foods/readFoodListResponse")
-    public FoodList readFoodList();
 
     /**
      * 
