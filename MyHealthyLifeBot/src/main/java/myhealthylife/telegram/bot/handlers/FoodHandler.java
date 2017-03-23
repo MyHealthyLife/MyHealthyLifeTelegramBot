@@ -26,7 +26,7 @@ public class FoodHandler {
 		
 		p=res.readEntity(Person.class);
 		
-		Response foodsResponse=ServicesLocator.getCentric1Connection().path("/recipe/"+p.getUsername()).request().accept(MediaType.APPLICATION_JSON).get();
+		Response foodsResponse=ServicesLocator.getCentric1Connection().path("/foods/"+p.getUsername()).request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(foodsResponse.getStatus()!=Response.Status.OK.getStatusCode()){
 			return "An error occurs during information retrival (Foods)";
