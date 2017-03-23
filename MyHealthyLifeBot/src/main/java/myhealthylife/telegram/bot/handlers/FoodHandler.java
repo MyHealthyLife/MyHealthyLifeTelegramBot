@@ -80,42 +80,11 @@ public class FoodHandler {
 			return "An error occurs during information retrival (Foods)";
 		}
 
+		String message="";
 		List<Recipe> foods=recipeResponse.readEntity(RecipeList.class).getRecipes();
 		
-		Iterator<Recipe> it=foods.iterator();
+		message = FoodHandler.printRecipesList(foods);
 		
-		String message="";
-		
-		while(it.hasNext()){
-			
-			Recipe r=it.next();
-			List<Food> ingredients = r.getIngredients();
-			System.out.println("Size of ingredients: " + ingredients!=null);
-			
-			if(r.getName()!=null) {
-				message+="RECIPE #" + r.getRecipeId() + ": " + r.getName()+"["+r.getCalories()+"kcal]\n";
-			}
-			else {
-				continue;
-			}
-			if(r.getDescription()!=null) {
-				message+="DESCRIPTION: " + r.getDescription() + "\n";
-			}
-			if(ingredients!=null && ingredients.size()!=0) {
-				System.out.println("Size of ingredients: " + ingredients.size());
-				message+="INGREDIENTS:";
-				for(int i=0;i<ingredients.size();i++) {
-					
-					Food singleIngredient = ingredients.get(i);
-					message+="\n=>" + i + ". " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory() + "]";
-					
-				}
-				
-			}
-			
-			
-			message+="\n__________\n\n";
-		}
 		if(message.equals("")) {
 			message += "No recipe named '" + recipeName + "' was found\n";
 		}
@@ -131,7 +100,7 @@ public class FoodHandler {
 	public static String getSuggestedRecipes(String personId){
 		
 		Person p=null;
-		System.out.println("Username id: " + personId);
+		
 		Response res= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(res.getStatus()!=Response.Status.OK.getStatusCode()){
@@ -140,24 +109,37 @@ public class FoodHandler {
 		
 		p=res.readEntity(Person.class);
 		
-		System.out.println("Username request: /recipe/suggested/" + p.getUsername());
+		
 		Response recipeResponse=ServicesLocator.getCentric2Connection().path("/recipe/suggested/"+p.getUsername()).request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(recipeResponse.getStatus()!=Response.Status.OK.getStatusCode()){
 			return "An error occurs during information retrival (Foods)";
 		}
 
+		String message="";
 		List<Recipe> foods=recipeResponse.readEntity(RecipeList.class).getRecipes();
 		
-		Iterator<Recipe> it=foods.iterator();
+		message = FoodHandler.printRecipesList(foods);
 		
-		String message="";
+		if(message.equals("")) {
+			message += "No recipe named was found in the database\n";
+		}
+		
+		return message;
+		
+	}
+	
+	
+	
+	public static String printRecipesList(List<Recipe> foods) {
+		
+		String message = "";
+		Iterator<Recipe> it=foods.iterator();
 		
 		while(it.hasNext()){
 			
 			Recipe r=it.next();
 			List<Food> ingredients = r.getIngredients();
-			System.out.println("Size of ingredients: " + ingredients!=null);
 			
 			if(r.getName()!=null) {
 				message+="RECIPE #" + r.getRecipeId() + ": " + r.getName()+"["+r.getCalories()+"kcal]\n";
@@ -169,12 +151,12 @@ public class FoodHandler {
 				message+="DESCRIPTION: " + r.getDescription() + "\n";
 			}
 			if(ingredients!=null && ingredients.size()!=0) {
-				System.out.println("Size of ingredients: " + ingredients.size());
+				
 				message+="INGREDIENTS:";
 				for(int i=0;i<ingredients.size();i++) {
 					
 					Food singleIngredient = ingredients.get(i);
-					message+="\n=>" + i + ". " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory();
+					message+="\n=>" + i + ". " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory() + "]";
 					
 				}
 				
@@ -183,12 +165,8 @@ public class FoodHandler {
 			
 			message+="\n__________\n\n";
 		}
-		if(message.equals("")) {
-			message += "No recipe named was found in the database\n";
-		}
 		
 		return message;
-		
 	}
 	
 	
