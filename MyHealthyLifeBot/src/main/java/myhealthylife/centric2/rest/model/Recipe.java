@@ -31,10 +31,10 @@ public class Recipe {
 	/**
 	 * this list will not saved in the DB, only the IDs, foods are already stored in the Service04
 	 */
-	@Transient
+	
 	private List<Food> ingredients;
 	
-	@Transient
+	
 	private long calories;
 
 	public long getRecipeId() {
@@ -59,8 +59,8 @@ public class Recipe {
 	public void computeIDS() {
 		ingredientsIDs=new ArrayList<Long>();
 		
-		if(ingredients!=null){
-			Iterator<Food> it=ingredients.iterator();
+		if(getIngredients()!=null){
+			Iterator<Food> it=getIngredients().iterator();
 			
 			while(it.hasNext()){
 				Food f=it.next();
@@ -90,11 +90,6 @@ public class Recipe {
 		this.description = description;
 	}
 
-	public List<Food> getIngredients() {
-				
-		return ingredients;
-	}
-
 
 	public long getCalories() {
 		return calories;
@@ -103,15 +98,14 @@ public class Recipe {
 	public void setCalories(long calories) {
 		this.calories = calories;
 	}
-	
-	public void computeCalories(){
-		calories=0;
-		Iterator<Food> iterator=getIngredients().iterator();
-		
-		while(iterator.hasNext()){
-			Food f=iterator.next();
-			if(f.getCalories()!=null)
-				calories+=f.getCalories();
-		}
+
+	public List<Food> getIngredients() {
+		return ingredients;
 	}
+
+	public void setIngredients(List<Food> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
+	
 }
