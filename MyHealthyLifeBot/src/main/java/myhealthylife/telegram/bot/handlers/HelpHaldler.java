@@ -21,10 +21,6 @@ public class HelpHaldler {
 		message+="/receive Receive all the sentences the other users dedicated to you within 7 days\n";
 		message+="/recipe <recipe name> Shows the details of an existing recipe\n";
 		message+="/recipesforme Gets specific recipes based on your measures\n";
-		message+="/new_recipe\n";
-		message+="/update_recipe\n";
-		message+="/newFood\n";
-		message+="/newGoal\n";
 		message+="/start_notifications Starts the push notification service for your user\n";
 		message+="/unsubscribe_notification Stops the push notification service for your user\n";
 		
