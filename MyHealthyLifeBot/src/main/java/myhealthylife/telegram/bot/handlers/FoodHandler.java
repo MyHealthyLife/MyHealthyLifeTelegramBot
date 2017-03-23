@@ -99,7 +99,7 @@ public class FoodHandler {
 				continue;
 			}
 			if(r.getDescription()!=null) {
-				message+="DESCRIPTION: " + r.getDescription();
+				message+="DESCRIPTION: " + r.getDescription() + "\n";
 			}
 			if(ingredients!=null && ingredients.size()!=0) {
 				System.out.println("Size of ingredients: " + ingredients.size());
@@ -107,7 +107,7 @@ public class FoodHandler {
 				for(int i=0;i<ingredients.size();i++) {
 					
 					Food singleIngredient = ingredients.get(i);
-					message+="\t" + i + " " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory();
+					message+="\n=>" + i + ". " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory() + "]";
 					
 				}
 				
@@ -166,7 +166,7 @@ public class FoodHandler {
 				continue;
 			}
 			if(r.getDescription()!=null) {
-				message+="DESCRIPTION: " + r.getDescription();
+				message+="DESCRIPTION: " + r.getDescription() + "\n";
 			}
 			if(ingredients!=null && ingredients.size()!=0) {
 				System.out.println("Size of ingredients: " + ingredients.size());
@@ -174,7 +174,7 @@ public class FoodHandler {
 				for(int i=0;i<ingredients.size();i++) {
 					
 					Food singleIngredient = ingredients.get(i);
-					message+="\t" + i + " " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory();
+					message+="\n=>" + i + ". " + singleIngredient.getName() + " [" + singleIngredient.getCalories() + " - " + singleIngredient.getFoodType().getCategory();
 					
 				}
 				
