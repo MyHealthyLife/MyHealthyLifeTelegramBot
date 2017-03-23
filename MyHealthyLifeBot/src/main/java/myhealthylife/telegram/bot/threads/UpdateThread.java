@@ -175,8 +175,13 @@ public class UpdateThread implements Runnable{
 		        		
 		        }
 		        
-		        if(!newSubscription)
+		        if(!newSubscription){
+		        	if(update.getMessage().isGroupMessage()){
+		        		String text=message.getText();
+		        		message.setText("@"+update.getMessage().getFrom().getUserName().toString()+"\n"+text);
+		        	}
 		        	myHealthyLifeBot.sendMessageResponse(message);
+		        }
 		        
 		    }
 	}
