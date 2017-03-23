@@ -4,11 +4,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.TimerTask;
 
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 
+import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.telegram.bot.MyHealthyLifeBot;
 import myhealthylife.telegram.bot.handlers.SentenceHandler;
 import myhealthylife.telegram.bot.model.entities.ChatsData;
+import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class AutomaticReceive extends TimerTask{
 
@@ -32,9 +37,19 @@ private MyHealthyLifeBot myHealthyLifeBot;
 			
 			String msg=SentenceHandler.receiveSentences(""+c.getPersonId());
 			
+			Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+c.getPersonId()).request().accept(MediaType.APPLICATION_JSON).get();
+			
+			String username="";
+			
+			if(resPerson.getStatus()==Response.Status.OK.getStatusCode()){
+				Person p=resPerson.readEntity(Person.class);
+				username="@"+p.getUsername()+"\n";
+			}
+			
+			
 			SendMessage message=new SendMessage();
 			message.setChatId(c.getChatId());
-			message.setText(msg);
+			message.setText(username+msg);
 			myHealthyLifeBot.sendMessageResponse(message);
 			
 			
