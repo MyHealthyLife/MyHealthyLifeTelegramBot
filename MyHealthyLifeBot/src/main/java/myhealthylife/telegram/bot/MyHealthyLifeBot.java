@@ -28,7 +28,7 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 	
 	/*create a threadpool of 10 threads*/
 	public void inizializeExecutor(){
-		executor=(ThreadPoolExecutor) Executors.newFixedThreadPool(10);
+		executor=(ThreadPoolExecutor) Executors.newFixedThreadPool(5);
 		System.out.println(executor.getPoolSize());
 	}
 
