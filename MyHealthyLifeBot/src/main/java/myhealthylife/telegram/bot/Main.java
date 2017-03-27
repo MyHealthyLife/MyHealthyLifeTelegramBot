@@ -38,6 +38,6 @@ public class Main {
         
         AutomaticReceive ar=new AutomaticReceive(myHealthyLifeBot);
         
-        t.scheduleAtFixedRate(ar, 0, 1*1000*60*60);
+        t.scheduleAtFixedRate(ar, 0, 4*1000*60*60);
     }
 }
