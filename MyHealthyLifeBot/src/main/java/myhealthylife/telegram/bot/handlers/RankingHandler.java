@@ -22,7 +22,7 @@ public static String getUserRank(String personId) {
 		Person p=resPerson.readEntity(Person.class);
 		String username=p.getUsername();
 		System.out.println("Your user: " + username);
-		Response res= ServicesLocator.getCentric2Connection().path("ranking/" + username).queryParam("bot", true).request().accept(MediaType.APPLICATION_JSON).get();
+		Response res= ServicesLocator.getCentric2Connection().path("ranking/bot/" + username).request().accept(MediaType.APPLICATION_JSON).get();
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode()) {
 			
