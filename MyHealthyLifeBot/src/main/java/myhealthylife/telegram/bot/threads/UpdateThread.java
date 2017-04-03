@@ -13,6 +13,7 @@ import myhealthylife.telegram.bot.handlers.HelpHaldler;
 import myhealthylife.telegram.bot.handlers.RankingHandler;
 import myhealthylife.telegram.bot.handlers.SentenceHandler;
 import myhealthylife.telegram.bot.handlers.UserDataHandler;
+import myhealthylife.telegram.bot.handlers.WeatherHandler;
 
 public class UpdateThread implements Runnable{
 	
@@ -168,6 +169,10 @@ public class UpdateThread implements Runnable{
 		        	case "/unsubscribe_notification":
 		        		DailySentence.unsubscribe(myHealthyLifeBot,message.getChatId(), update.getMessage().getFrom().getId());
 		        		message.setText("unsubscribed for daily notification");
+		        		break;
+		        	case "/weather":
+		        		message.enableMarkdown(true);
+		        		message.setText(WeatherHandler.getWeather(""+update.getMessage().getFrom().getId()));
 		        		break;
 		        	default:
 		        		message.setText(HelpHaldler.getCommandNotFound());

@@ -23,6 +23,7 @@ public class HelpHaldler {
 		message+="/recipesforme Gets specific recipes based on your measures\n";
 		message+="/start_notifications Starts the push notification service for your user\n";
 		message+="/unsubscribe_notification Stops the push notification service for your user\n";
+		message+="/weather get weather forecast\n";
 		
 		return message;
 	}
