@@ -1,0 +1,99 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="current" type="current_type">
+
+    </xsd:element>
+
+    <xsd:complexType name="current_type">
+        <xsd:sequence>
+            <xsd:element name="city" type="city_type"/>
+            <xsd:element name="temperature" type="temperature_type"/>
+            <xsd:element name="humidity" type="umidity_type"/>
+            <xsd:element name="pressure" type="pressure_type"/>
+            <xsd:element name="wind" type="wind_type"/>
+            <xsd:element name="clouds" type="clouds_type"/>
+            <xsd:element name="visibility" type="visibility_type"/>
+            <xsd:element name="precipitation" type="precipitation_type"/>
+            <xsd:element name="weather" type="weather_type"/>
+            <xsd:element name="lastupdate" type="lastupdate_type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="city_type">
+        <xsd:sequence>
+            <xsd:element name="coord" type="coord_type"/>
+            <xsd:element name="country" type="xsd:string"/>
+            <xsd:element name="sun" type="sun_type"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:long"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="coord_type">
+        <xsd:attribute name="lon" type="xsd:float"/>
+        <xsd:attribute name="lat" type="xsd:float"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="sun_type">
+        <xsd:attribute name="rise" type="xsd:dateTime"/>
+        <xsd:attribute name="set" type="xsd:dateTime"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="temperature_type">
+        <xsd:attribute name="value" type="xsd:float"/>
+        <xsd:attribute name="min" type="xsd:float"/>
+        <xsd:attribute name="max" type="xsd:float"/>
+        <xsd:attribute name="unit" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="umidity_type">
+        <xsd:attribute name="value" type="xsd:float"/>
+        <xsd:attribute name="unit" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="pressure_type">
+        <xsd:attribute name="value" type="xsd:float"/>
+        <xsd:attribute name="unit" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="clouds_type">
+        <xsd:attribute name="value" type="xsd:float"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="visibility_type">
+        <xsd:attribute name="value" type="xsd:float"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="precipitation_type">
+        <xsd:attribute name="mode" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="weather_type">
+        <xsd:attribute name="number" type="xsd:float"/>
+        <xsd:attribute name="value" type="xsd:string"/>
+        <xsd:attribute name="icon" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="lastupdate_type">
+        <xsd:attribute name="value" type="xsd:dateTime"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="wind_type">
+        <xsd:sequence>
+            <xsd:element name="speed" type="speed_type"/>
+            <xsd:element name="gusts" type="xsd:string"/>
+            <xsd:element name="direction" type="direction_type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="speed_type">
+        <xsd:attribute name="value" type="xsd:float"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="direction_type">
+        <xsd:attribute name="value" type="xsd:float"/>
+        <xsd:attribute name="code" type="xsd:string"/>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+</xsd:schema>
