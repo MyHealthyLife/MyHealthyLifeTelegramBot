@@ -16,6 +16,8 @@ public class SentenceType implements Serializable {
 
 	private Boolean motive;
 	
+	private boolean privateType;
+	
 	public long getIdSentenceType() {
 		return idSentenceType;
 	}
@@ -38,6 +40,14 @@ public class SentenceType implements Serializable {
 
 	public void setMotive(Boolean motive) {
 		this.motive = motive;
+	}
+
+	public boolean isPrivateType() {
+		return privateType;
+	}
+
+	public void setPrivateType(boolean privateType) {
+		this.privateType = privateType;
 	}
 	
 	

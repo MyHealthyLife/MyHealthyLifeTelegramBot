@@ -25,7 +25,7 @@ public class WeatherHandler {
 		
 		Current c=res.readEntity(Current.class);
 		
-		return "Weather in *"+p.getCity()+"* -"+p.getCountry()+":\n"+
+		return "Weather in *"+p.getCity()+"* - "+p.getCountry()+":\n"+
 				"*"+c.getWeather().getValue()+"* - temperature: "+c.getTemperature().getValue()+"°C\n"+
 				"\t*humidity*: "+c.getHumidity().getValue()+" "+c.getHumidity().getUnit()+"\n"
 				+"\t*pressure*: "+c.getPressure().getValue()+" "+c.getPressure().getUnit();
