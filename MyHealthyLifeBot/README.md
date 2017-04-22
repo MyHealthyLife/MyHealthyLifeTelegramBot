@@ -1,4 +1,4 @@
-# MyHealthyLifeBot Application (client)
+﻿# MyHealthyLifeBot Application (client)
 
 This is the telegram bot for MyHealthyLife project and it is hosted in heroku domains. As for the other clients it has the duty to retrieve, view, create and update all the information related to a user and the community.
 The bot is capable of handling most of the requests available in centric01 and centric02. However, the remaining ones were not integrated because of their complexity.
@@ -46,4 +46,4 @@ In particular, those pages are also integrated inside the android application th
 ## 2. Application implementation
 ##### Multi-threading
 
-In order to increase the performance this bot has been programmed with Multi-thread system. During the start-up a pool with 5 thread will be initialized.
+In order to avoid requests queue saturation and to increase the performance this bot has been implemented with Multi-thread model. During the start-up a pool with 5 thread will be initialized. This permits the bot to send multiple requests at the same time. Also, if an user perform a request which request a lot of time to be handled, this does not block the other users' requests.
