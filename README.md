@@ -47,3 +47,11 @@ In particular, those pages are also integrated inside the android application th
 ##### Multi-threading
 
 In order to avoid requests queue saturation and to increase the performance this bot has been implemented with Multi-thread model. During the start-up a pool with 5 thread will be initialized. This permits the bot to send multiple requests at the same time. Also, if an user perform a request which request a lot of time to be handled, this does not block the other users' requests.
+
+This model accelerates the requests processing and gives full support also to telegram groups where the bot has been added.
+
+The following image shows how it has been implemented the thread model:
+
+![Request Handling](img/multi.png "Request Handling")
+
+When a user send a request to the bot, first the *MyHealthyLifeBot* class intercept the request and then it passes the task to one of the threads in the pool. The thread reads the message and then selects the target handler which computes the response message. Finally the thread sends the response to the user.
