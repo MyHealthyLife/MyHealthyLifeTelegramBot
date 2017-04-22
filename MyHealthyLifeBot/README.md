@@ -18,22 +18,22 @@ Furthermore, the bot is implemented so to send to each user the dedicated senten
 The main objective of the bot application is to remain simple to use.
 Every inline command is an inline command that is present in the suggested list of the bot.
 In particular, the commands present in the bot application are the following:
-- **/register <name> <surname> <birthdate>:** register to the service
-- **/name <new name>:** updates your name
-- **/surname <new surname>:** updates your surname
-- **/birthdate <YYYY-MM-DD>:** updates your birthdate
+- **/register &lt;name&gt; &lt;surname&gt; &lt;birthdate&gt;:** register to the service
+- **/name &lt;new name&gt;:** updates your name
+- **/surname &lt;new surname&gt;:** updates your surname
+- **/birthdate &lt;YYYY-MM-DD&gt;:** updates your birthdate
 - **/unregister:** Deletes your user and all your data in the system
 - **/healthstate:** visualize your current health state
 - **/measure_history:** visualize the history of you measures
-- **/addmeasure <type> <value>:** save a new measure
+- **/addmeasure &lt;type&gt; &lt;value&gt;:** save a new measure
 - **/randomsentence:** Get a random sentence to motivate the user
 - **/sentenceforme:** Get a specific sentence based on your measures
 - **/foodsforme:** Gets specific type of foods based on your health state
 - **/goal:** Gets the goals you should reach
 - **/ranking:** Gets a compact ranking with the neareast users around your position
-- **/send <destination user> <type> <trend (gain or loss)>:** Sends a sentence to a destination user
+- **/send &lt;destination user&gt; &lt;type&gt; &lt;trend (gain or loss)&gt;:** Sends a sentence to a destination user
 - **/receive:** Receive all the sentences the other users dedicated to you within 7 days
-- **/recipe <recipe name>:** Shows the details of an existing recipe
+- **/recipe &lt;recipe name&gt;:** Shows the details of an existing recipe
 - **/recipesforme:** Gets specific recipes based on your measures
 - **/start_notifications:** Starts the push notification service for your user
 - **/unsubscribe_notification:** Stops the push notification service for your user
@@ -44,5 +44,6 @@ In particular, those pages are also integrated inside the android application th
 
 ## 2. Application implementation
 ##### Multi-threading
+
 
 In order to increase the performance this bot has been programmed with Multi-thread system. During the start-up a pool with 5 thread will be initialized.
