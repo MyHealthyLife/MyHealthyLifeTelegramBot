@@ -17,7 +17,7 @@ Furthermore, the bot is implemented so to send to each user the dedicated senten
 ##### Commands
 
 The main objective of the bot application is to remain simple to use.
-Every inline command is an inline command that is present in the suggested list of the bot.
+Every command is an inline command that is present in the suggested list of the bot.
 In particular, the commands present in the bot application are the following:
 - **/register &lt;name&gt; &lt;surname&gt; &lt;birthdate&gt;:** register to the service
 - **/name &lt;new name&gt;:** updates your name
