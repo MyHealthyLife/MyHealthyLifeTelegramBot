@@ -46,3 +46,4 @@ In particular, those pages are also integrated inside the android application th
 ## 2. Application implementation
 ##### Multi-threading
 
+In order to increase the performance this bot has been programmed with Multi-thread system. During the start-up a pool with 5 thread will be initialized.
