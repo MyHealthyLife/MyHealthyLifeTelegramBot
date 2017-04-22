@@ -3,6 +3,7 @@
 This is the telegram bot for MyHealthyLife project and it is hosted in heroku domains. As for the other clients it has the duty to retrieve, view, create and update all the information related to a user and the community.
 The bot is capable of handling most of the requests available in centric01 and centric02. However, the remaining ones were not integrated because of their complexity.
 
+In order to interact with MyHealthyLifeBot, the user needs to press the following link and start a new chat from the telegram client: http://t.me/myhealthylife_bot.
 
 ## 1. Features
 
