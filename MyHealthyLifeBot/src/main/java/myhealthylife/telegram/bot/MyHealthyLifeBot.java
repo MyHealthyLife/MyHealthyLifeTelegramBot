@@ -18,6 +18,7 @@ import myhealthylife.telegram.bot.threads.UpdateThreadFactory;
 
 public class MyHealthyLifeBot extends TelegramLongPollingBot{
 	private ThreadPoolExecutor executor;
+	public final static int MAX_LENGHT=4096;
 
 	public void onUpdateReceived(Update update) {
 		/*giving the update to the thread pool*/
@@ -37,7 +38,24 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 	public void sendMessageResponse(SendMessage message) {
 		try {
 			System.out.println(message);
-		    sendMessage(message); // Call method to send the message
+		    
+		    String text=message.getText();
+		    boolean sended=false;
+		    do
+		    {
+			    if(text.length()<=MAX_LENGHT){
+			    	message.setText(text);
+			    	sendMessage(message); // Call method to send the message
+			    	sended=true;
+			    }
+			    else{
+			    	String temp;
+			    	temp=text.substring(0, MAX_LENGHT);
+			    	text=text.substring(MAX_LENGHT);
+			    	message.setText(temp);
+			    	sendMessage(message);
+			    }
+		    }while(!sended);
 		} catch (TelegramApiException e) {
 		    e.printStackTrace();
 		}
