@@ -41,21 +41,24 @@ public class MyHealthyLifeBot extends TelegramLongPollingBot{
 		    
 		    String text=message.getText();
 		    boolean sended=false;
+		    
+		    /*split long message
+		     * telegram can send maximum 4096 charachter in a message*/
 		    do
 		    {
 			    if(text.length()<=MAX_LENGHT){
 			    	message.setText(text);
 			    	sendMessage(message); // Call method to send the message
-			    	sended=true;
+			    	sended=true;//notify that the wole message have been sended
 			    }
 			    else{
 			    	String temp;
-			    	temp=text.substring(0, MAX_LENGHT);
+			    	temp=text.substring(0, MAX_LENGHT);//split the message
 			    	text=text.substring(MAX_LENGHT);
 			    	message.setText(temp);
 			    	sendMessage(message);
 			    }
-		    }while(!sended);
+		    }while(!sended);//continue until the whole message have ben sended
 		} catch (TelegramApiException e) {
 		    e.printStackTrace();
 		}
