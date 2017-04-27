@@ -17,6 +17,11 @@ import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class HealthProfileHandler {
 
+	/**
+	 * retrieve the current health profile of the person and print it in a formatted way
+	 * @param personId
+	 * @return
+	 */
 	public static String getCurrentHealth(String personId){
 		
 		Person p=null;
@@ -56,11 +61,17 @@ public class HealthProfileHandler {
 		}
 	}
 	
+	/**
+	 * retrieve the measure history of the person and print it in a formatted way
+	 * @param personId
+	 * @return
+	 */
 	public static String getHealthHistory(String personId){
 		
 		
 		Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
 		
+		//handle errors
 		if(resPerson.getStatus()!=Response.Status.OK.getStatusCode()){
 			System.out.println(resPerson.getStatus());
 			return "Information not available ";
@@ -95,10 +106,18 @@ public class HealthProfileHandler {
 		return result;
 	}
 	
+	/**
+	 * save a new measure for a person
+	 * @param personId the id of the person
+	 * @param type the type of the measure (weight, height, etc...)
+	 * @param value the value of the measure
+	 * @return
+	 */
 	public static String addMeasure(String personId,String type,String value){
 		
 		Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
 		
+		//check if the account exists
 		if(resPerson.getStatus()!=Response.Status.OK.getStatusCode()){
 			System.out.println(resPerson.getStatus());
 			return "Information not available ";
@@ -108,6 +127,7 @@ public class HealthProfileHandler {
 		String username=p.getUsername();
 		
 		
+		//create the measure object
 		Measure m=new Measure();
 		m.setDateRegistered(new Date(System.currentTimeMillis()));
 		m.setMeasureType(type);
@@ -120,6 +140,7 @@ public class HealthProfileHandler {
 			return "use /addmeasure <type> <value>";
 		}
 		
+		//save the measure
 		Response res=ServicesLocator.getCentric1Connection().path("measure/"+username).request().accept(MediaType.APPLICATION_JSON).post(Entity.entity(m, MediaType.APPLICATION_JSON));
 		
 		if(res.getStatus()==Response.Status.OK.getStatusCode())
@@ -130,6 +151,10 @@ public class HealthProfileHandler {
 		return "Measure NOT saved";
 	}
 	
+	/**
+	 * return a message which contains all the measure type available in the system
+	 * @return
+	 */
 	public static String getMeasureTypes(){
 		Response res=ServicesLocator.getCentric1Connection().path("measuretypes").request().accept(MediaType.APPLICATION_JSON).get();
 		if(res.getStatus()!=Response.Status.OK.getStatusCode())
