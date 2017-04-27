@@ -1,6 +1,11 @@
 package myhealthylife.telegram.bot.handlers;
 
 public class HelpHaldler {
+	
+	/**
+	 * Prints all the possible input commands the bot accepts
+	 * @return
+	 */
 	public static String getHelpMessage(){
 		String message="/help: visualize this message\n";
 		
