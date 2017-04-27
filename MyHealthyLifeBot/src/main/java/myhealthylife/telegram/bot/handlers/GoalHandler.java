@@ -12,13 +12,22 @@ import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class GoalHandler {
+	
+	/**
+	 * Prepare a message which contains the goals of the user
+	 * @param personId
+	 * @return
+	 */
 	public static String myGoals(String personId){
+		//retrieve the person information
 		Response res= ServicesLocator.getCentric1Connection().path("/user/data/telegram/id/"+personId).request().accept(MediaType.APPLICATION_JSON).get();
 		
+		//check if the account exists
 		if(res.getStatus()!=Response.Status.OK.getStatusCode()){
 			return "Your account doea not exists, register first\n use /register <your MyHealthyLifeUsername>";
 		}
 		 
+		
 		Person p=res.readEntity(Person.class);
 		
 		Response goalResp=ServicesLocator.getCentric1Connection().path("/user/goals/"+p.getUsername()).request().accept(MediaType.APPLICATION_JSON).get();
@@ -27,6 +36,7 @@ public class GoalHandler {
 			return "An error occurs during the information retrival";
 		}
 		
+		//retrieve the goals
 		List<Goal> goals=goalResp.readEntity(GoalList.class).getGoals();
 		
 		if(goals.size()==0){
@@ -37,6 +47,7 @@ public class GoalHandler {
 		
 		String message="";
 		
+		//formatting the message		
 		while(it.hasNext()){
 			Goal g=it.next();
 			
