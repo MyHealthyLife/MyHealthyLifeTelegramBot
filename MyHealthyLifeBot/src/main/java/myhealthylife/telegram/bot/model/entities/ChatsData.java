@@ -17,6 +17,13 @@ import javax.persistence.TypedQuery;
 import myhealthylife.dataservice.model.entities.Person;
 import myhealthylife.telegram.bot.model.dao.ChatsDataDao;
 
+/**
+ * this entity is used for store in the database the chat's information.
+ * This information are used in order to send the updates automatically
+ * 
+ * @author stefano
+ *
+ */
 @Entity
 @Table(name="chats_data")
 @NamedQuery(name="ChatsData.findAll", query="SELECT c FROM ChatsData c")
