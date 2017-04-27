@@ -9,6 +9,11 @@ import myhealthylife.telegram.bot.utils.ServicesLocator;
 
 public class WeatherHandler {
 
+	/**
+	 * retrieve and print a message which contains the weather forecast for the are into the person live.
+	 * @param personId
+	 * @return
+	 */
 	public static String getWeather(String personId){
 		Person p= UserDataHandler.getPerson(personId);
 		
@@ -18,8 +23,10 @@ public class WeatherHandler {
 		if(p.getCity()==null || p.getCountry()==null)
 			return "set you city and country in your profile in order to get the weather information";
 		
+		//retrieve the weather forecast
 		Response res=ServicesLocator.getCentric1Connection().path("/weather/"+p.getUsername()).request().accept(MediaType.APPLICATION_JSON).get();
 		
+		//handle errors
 		if(res.getStatus()!=Response.Status.OK.getStatusCode())
 			return "An error occurs";
 		

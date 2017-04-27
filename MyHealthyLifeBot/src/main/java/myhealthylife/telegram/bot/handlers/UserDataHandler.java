@@ -18,7 +18,13 @@ public class UserDataHandler {
 
 	public static DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 	
-	
+	/**
+	 * register into the sistem:
+	 * save the telegram information inside the MyHealthyLifeProfile
+	 * @param telegramID
+	 * @param serviceUsername
+	 * @return
+	 */
 	public static String registerNewUser(Integer telegramID,String serviceUsername){
 		Response resp=ServicesLocator.getCentric1Connection().path("/user/data/"+serviceUsername).request().accept(MediaType.APPLICATION_JSON).get();
 		
@@ -65,7 +71,11 @@ public class UserDataHandler {
 		}
 	}
 	
-	
+	/**
+	 * retrieve the person information
+	 * @param personId
+	 * @return
+	 */
 	public static Person getPerson(String personId) {
 		
 		Person p = null;
@@ -82,12 +92,20 @@ public class UserDataHandler {
 		
 	}
 	
+	/**
+	 * Update the name of the person
+	 * 
+	 * @param personId
+	 * @param name
+	 * @return
+	 */
 	public static String updateName(String personId, String name) {
 		
 		Person p = UserDataHandler.getPerson(personId);
 		
 		String username=p.getUsername();
 		
+		// check if th person update
 		if(p!=null) {
 		
 			p.setFirstname(name);
@@ -109,7 +127,12 @@ public class UserDataHandler {
 	}
 	
 	
-	
+	/**
+	 * Update the person surname
+	 * @param personId
+	 * @param surname
+	 * @return
+	 */
 	public static String updateSurnameName(String personId, String surname) {
 		
 		Person p = UserDataHandler.getPerson(personId);
@@ -136,7 +159,12 @@ public class UserDataHandler {
 	}
 	
 	
-	
+	/**
+	 * update the person birth date
+	 * @param personId
+	 * @param birthdate
+	 * @return
+	 */
 	public static String updateBirthdate(String personId, String birthdate) {
 		
 		Person p = UserDataHandler.getPerson(personId);
@@ -168,7 +196,12 @@ public class UserDataHandler {
 	
 	
 	
-	
+	/**
+	 * delete the MyHealthyLife profile of a person
+	 * @param personId_t
+	 * @param confirmation
+	 * @return
+	 */
 	public static String deleteUserInformation(String personId_t, String confirmation) {
 		
 	
