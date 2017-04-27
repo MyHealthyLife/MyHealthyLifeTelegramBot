@@ -28,8 +28,15 @@ public class DailySentence extends TimerTask {
 		this.myHealthyLifeBot=myHealthyLifeBot;
 	}
 	
+	/**
+	 * register to notification service by saving the chat informations
+	 * @param myHealthyLifeBot
+	 * @param chatId
+	 * @param personId
+	 */
 	public static void registerToDailyNotification(MyHealthyLifeBot myHealthyLifeBot,String chatId,Integer personId){
 		
+		//chec if the person is already susbcribed in this chat
 		if(ChatsData.getByChatIDandPersonID(chatId, personId).size()!=0)
 		{
 			String msg="Already subscribed";
@@ -44,7 +51,7 @@ public class DailySentence extends TimerTask {
 		c.setChatId(chatId);
 		c.setPersonId(personId);
 		
-		ChatsData.save(c);
+		ChatsData.save(c); //save the information
 		
 		String msg="Subscription to daily message activated! type /unsubscribe_notification to disable it";
     	SendMessage mesg=new SendMessage();
@@ -53,6 +60,14 @@ public class DailySentence extends TimerTask {
     	myHealthyLifeBot.sendMessageResponse(mesg);
 	}
 	
+	
+	/**
+	 * unsubscribe from notification service
+	 * 
+	 * @param myHealthyLifeBot
+	 * @param chatId
+	 * @param personId
+	 */
 	public static void unsubscribe(MyHealthyLifeBot myHealthyLifeBot,String chatId,Integer personId){
 		List<ChatsData> list=ChatsData.getByChatIDandPersonID(chatId, personId);
 		if(list.size()==0){
@@ -69,22 +84,6 @@ public class DailySentence extends TimerTask {
 		
 		System.out.print("[TIMER TASK] sending...");
 		
-		/*Response resp=ServicesLocator.getCentric1Connection().path("/people").request().accept(MediaType.APPLICATION_JSON).get();
-		
-		if(resp.getStatus()!=Response.Status.OK.getStatusCode()){
-			return;
-		}
-		
-		People people=resp.readEntity(People.class);
-		
-		Iterator<Person> it=people.getPerson().iterator();
-		
-		while(it.hasNext()){
-			Person p=it.next();
-			
-			SendMessage message= new SendMessage();
-			
-		}*/
 		List<ChatsData> chatsDatas=ChatsData.getAll();
 		
 		System.out.println(""+chatsDatas.size()+" people");
@@ -94,10 +93,12 @@ public class DailySentence extends TimerTask {
 		while(it.hasNext()){
 			ChatsData c=it.next();
 			
+			//retrieve the person by the telegram id
 			Response res=ServicesLocator.getCentric1Connection().path("/user/data/telegram/id/"+c.getPersonId()).request().accept(MediaType.APPLICATION_JSON).get();
 			
+			//handling errors
 			if(res.getStatus()!=Response.Status.OK.getStatusCode()){
-				//TODO handle error
+				
 				SendMessage message=new SendMessage();
 				message.setChatId(c.getChatId());
 				message.setText("Error during the information retrival");
@@ -106,6 +107,7 @@ public class DailySentence extends TimerTask {
 				continue;
 			}
 			
+			//retrive the sentence
 			Person p=res.readEntity(Person.class);
 			String msg="@"+p.getTelegramUsername()+" "+SentenceHandler.getSentenceForMe(""+c.getPersonId());
 			

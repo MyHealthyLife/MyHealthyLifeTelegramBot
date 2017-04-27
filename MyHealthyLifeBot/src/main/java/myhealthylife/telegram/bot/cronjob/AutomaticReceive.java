@@ -25,18 +25,20 @@ private MyHealthyLifeBot myHealthyLifeBot;
 	}
 	
 	@Override
-	public void run() {//TODO works only for person with active notification
+	public void run() {
 		
 		List<ChatsData> chatsData=ChatsData.getAll();
 		System.out.println("[AUTOMATIC RECEIVE]... "+chatsData.size()+" person");
 		
-		Iterator<ChatsData> it=chatsData.iterator();
+		Iterator<ChatsData> it=chatsData.iterator(); //retrieve chats informations from the database
 		
 		while(it.hasNext()){
 			ChatsData c=it.next();
 			
+			/*retrieve the senteces based on person id*/
 			String msg=SentenceHandler.receiveSentences(""+c.getPersonId());
 			
+			//retrieve the person information from telegramid
 			Response resPerson= ServicesLocator.getCentric1Connection().path("user/data/telegram/id/"+c.getPersonId()).request().accept(MediaType.APPLICATION_JSON).get();
 			
 			String username="";
