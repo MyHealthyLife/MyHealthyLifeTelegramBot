@@ -34,7 +34,7 @@ public class Main {
         
         t.scheduleAtFixedRate(ds, 0, 6*1000*60*60);
         
-        /*check for sentence send by other user every hour*/
+        /*check for sentence send by other user every 4 hour*/
         
         AutomaticReceive ar=new AutomaticReceive(myHealthyLifeBot);
         
